@@ -1,0 +1,41 @@
+<!-- Include the basic layout -->
+<% layout('./layout01', it) %>
+
+<div class="columns is-variable is-8">
+
+    <div class="column is-one-thirds">
+
+        <div class="content">
+
+            <h3> Über mich</h3>
+
+            <p>He’s not a word hero. He’s a word hero because he was captured. I like text that wasn’t captured. This placeholder text is gonna be HUGE. Lorem Ipsum's father was with Lee Harvey Oswald prior to Oswald's being, you know, shot. Trump Ipsum is calling for a total and complete shutdown of Muslim text entering your website.</p>
+
+            <blockquote>Ut venenatis, nisl scelerisque sollicitudin fermentum, quam libero hendrerit ipsum, ut blandit est tellus sit amet turpis.</blockquote>
+
+            <h4> Meine super tolle Kamera </h4>
+
+            <p>I think the only card she has is the Lorem <a href="#">card</a>.</p>
+
+            <p>Lorem Ipsum is unattractive, both inside and out. I fully understand why it’s former users left it for something else. They made a good decision. If Trump Ipsum weren’t my own words, perhaps I’d be dating it. He’s not a word hero. He’s a word hero because he was captured. I like text that wasn’t captured. Despite the constant negative ipsum covfefe.</p>
+
+
+        </div>
+        
+        
+    </div>
+
+    <div class="column">
+        
+        <div class="block">
+            <div class="card">
+                <div class="card-image">
+                    <figure class="image is-4by5">
+                    <img src="<%= it.profilePicturePath %>" alt="Placeholder image" class="zoomable">
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

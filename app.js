@@ -38,6 +38,13 @@ app.get('/', (req, res) => {
     })
 })
 
+// Serve the index page
+app.get('/me', (req, res) => {
+    res.render("_about", {
+        profilePicturePath: "/img/IMG_00034.jpg"
+    })
+})
+
 let data = {
     title: "Find here some images",
     subtitle: "They are just for you",
