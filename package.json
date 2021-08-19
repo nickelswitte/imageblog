@@ -1,0 +1,19 @@
+{
+  "name": "imageblog",
+  "version": "0.0.1",
+  "description": "Tbd",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nickelswitte/imageblog.git"
+  },
+  "author": "Nickels Witte",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nickelswitte/imageblog/issues"
+  },
+  "homepage": "https://github.com/nickelswitte/imageblog#readme"
+}
