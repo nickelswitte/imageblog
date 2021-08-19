@@ -1,0 +1,13 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>template-engine-example</title>
+<meta name="author" content="AppleSnap">
+<meta name="description" content="description here">
+<meta name="keywords" content="keywords,here">
+
+<!-- Include Bulma -->
+<!-- <link href="/bulma.min.css" rel="stylesheet" type="text/css"> -->
+<link href="/css/main.css" rel="stylesheet" type="text/css">
+<script src="/js/basics.js"></script>
+<script src="/js/medium-zoom.js" type="module"></script>
+<script src="/medium-zoom.min.js"></script>

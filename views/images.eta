@@ -1,0 +1,23 @@
+<!-- Include the basic layout -->
+<% layout('./layout01', it) %>
+
+<div class="columns">
+    <div class="column">
+        <!-- First column -->
+        <% console.log(it.people[0])
+        let a = Math.ceil(it.people.length / 2);
+
+        console.log(a); %>
+
+        <% for (let i = 0; i < a; i++) { %>
+            <%~ includeFile('./imagecard', it.people[i]) %>
+        <% }; %>
+
+    </div>
+    <div class="column">
+        <!-- Second column -->
+        <% for (let i = a; i < it.people.length; i++) { %>
+            <%~ includeFile('./imagecard', it.people[i]) %>
+        <% }; %>
+    </div>
+</div>

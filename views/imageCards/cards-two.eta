@@ -1,0 +1,27 @@
+
+
+<div class="columns">
+    <div class="column">
+        <div class="block">
+            <div class="card">
+                <div class="card-image">
+                    <figure class="image is-square">
+                    <img src="<%= it.path1 %>" alt="Placeholder image" class="zoomable">
+                    </figure>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="column">
+        <div class="block">
+            <div class="card">
+                <div class="card-image">
+                    <figure class="image is-square">
+                    <img src="<%= it.path2 %>" alt="Placeholder image" class="zoomable">
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

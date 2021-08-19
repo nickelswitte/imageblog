@@ -1,0 +1,158 @@
+
+<% layout('./layout01', it) %>
+
+<div class="columns">
+    <div class="column">
+        <!-- First column -->
+        <% console.log(it.imageNames[0])%>
+
+        <% 
+        let i = 0;
+        let presets = 0;
+        %>
+
+        <% while (i < it.imageNames.length) {
+
+            switch (presets) {
+                case 0: %>
+
+
+                    <%~ includeFile('./imageCards/cards-one', { 
+                        path1: it.pathPrefix + it.imageNames[i]
+                    }); %>
+
+                    <% 
+
+                    i += 1;   
+                    presets++; 
+                    break;
+
+                case 1: 
+
+                    if ((it.imageNames.length - i) < 2) {
+                        presets++;
+                        break;
+                    }
+
+                    %>
+                    
+                    <%~ includeFile('./imageCards/cards-two', { 
+                        path1: it.pathPrefix + it.imageNames[i],
+                        path2: it.pathPrefix + it.imageNames[i + 1]
+                    }); %>
+
+                    <% 
+
+                    i += 2;    
+                    presets++; 
+                    break;
+                    
+                case 2: 
+
+                    if ((it.imageNames.length - i) < 3) {
+                        presets++;
+                        break;
+                    }
+
+                    %>
+
+                    <%~ includeFile('./imageCards/cards-three', { 
+                        path1: it.pathPrefix + it.imageNames[i],
+                        path2: it.pathPrefix + it.imageNames[i + 1],
+                        path3: it.pathPrefix + it.imageNames[i + 2]
+                    }); %>
+
+                    <% 
+
+                    i += 3;    
+                    presets++;
+                    break;
+
+                case 3: 
+
+                    if ((it.imageNames.length - i) < 3) {
+                        presets++;
+                        break;
+                    }
+
+                    %> 
+
+
+                    <%~ includeFile('./imageCards/cards-mixed1', { 
+                        path1: it.pathPrefix + it.imageNames[i],
+                        path2: it.pathPrefix + it.imageNames[i + 1],
+                        path3: it.pathPrefix + it.imageNames[i + 2]
+                    }); %>
+
+                    <% 
+
+                    i += 3;    
+                    presets++;
+                    break;
+                case 4: 
+
+                    if ((it.imageNames.length - i) < 3) {
+                        presets++;
+                        break;
+                    }
+
+                    %> 
+                    <%~ includeFile('./imageCards/cards-mixed2', { 
+                        path1: it.pathPrefix + it.imageNames[i],
+                        path2: it.pathPrefix + it.imageNames[i + 1],
+                        path3: it.pathPrefix + it.imageNames[i + 2]
+                    }); %>
+
+                    <% 
+
+                    i += 3;    
+                    presets++;
+                    break;
+                case 5: 
+
+                    if ((it.imageNames.length - i) < 2) {
+                        presets++;
+                        break;
+                    }
+
+                    %> 
+
+                    <%~ includeFile('./imageCards/cards-mixed3', { 
+                        path1: it.pathPrefix + it.imageNames[i],
+                        path2: it.pathPrefix + it.imageNames[i + 1]
+                    }); %>
+
+                    <% 
+
+                    i += 2;    
+                    presets++;
+                    break;
+
+                case 6: 
+
+                    if ((it.imageNames.length - i) < 2) {
+                        presets++;
+                        break;
+                    }
+
+                    %>
+                    <%~ includeFile('./imageCards/cards-mixed4', { 
+                        path1: it.pathPrefix + it.imageNames[i],
+                        path2: it.pathPrefix + it.imageNames[i + 1]
+                    }); %>
+
+                    <% 
+
+                    i += 2;    
+                    presets++;
+                    break;
+                default: 
+            }
+
+            if (presets >= 7)
+                presets = 0;
+
+        } %>
+
+    </div>
+</div>

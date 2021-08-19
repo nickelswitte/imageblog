@@ -1,0 +1,6 @@
+@import '/bulma.min.css';
+@import '/bulma-divider.min.css';
+
+img {
+    object-fit: cover;
+}

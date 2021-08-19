@@ -1,0 +1,18 @@
+
+<% layout('./layout01', it) %>
+
+<div class="columns">
+    <div class="column">
+        <!-- First column -->
+        <% console.log(it.imagePaths[0])%>
+
+        
+        <% for (let i = 0; i < it.imagePaths.length; i++) { %>
+            <%~ includeFile('./imageCards/cards-one', { path: it.imagePaths[i] }) %>
+        <% }; %>
+
+        
+        
+
+    </div>
+</div>

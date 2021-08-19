@@ -1,0 +1,29 @@
+<div class="columns">
+    <div class="column is-two-thirds">
+        <div class="block">
+            <div class="card">
+                <div class="card-image">
+                    <figure class="image is-5by3">
+                    <img src="<%= it.path1 %>" alt="Placeholder image" class="zoomable">
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="column">
+        
+        <div class="block">
+            <div class="card">
+                <div class="card-image">
+                    <figure class="image is-4by5">
+                    <img src="<%= it.path2 %>" alt="Placeholder image" class="zoomable">
+                    </figure>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+    
+</div>

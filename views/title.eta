@@ -1,0 +1,18 @@
+<section class="hero is-small">
+    <div class="hero-body">
+        <h1 class="title">
+            <% if (typeof it.title !== 'undefined') { %>
+            <%= it.title %>
+            <% } else { %>
+            This is an example title!
+            <% } %>
+        </h1>
+
+        <p class="subtitle">
+            <% if (typeof it.subtitle !== 'undefined') { %>
+            <%~ it.subtitle %>
+            <% } %>
+        </p>
+    </div>
+
+</section>

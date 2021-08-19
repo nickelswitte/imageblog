@@ -3,8 +3,10 @@
   "version": "0.0.1",
   "description": "Tbd",
   "main": "app.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,17 @@
   "bugs": {
     "url": "https://github.com/nickelswitte/imageblog/issues"
   },
-  "homepage": "https://github.com/nickelswitte/imageblog#readme"
+  "homepage": "https://github.com/nickelswitte/imageblog#readme",
+  "dependencies": {
+    "@creativebulma/bulma-divider": "^1.1.0",
+    "bulma": "^0.9.3",
+    "eta": "^1.12.3",
+    "express": "^4.17.1",
+    "markdown-it": "^12.1.0",
+    "markdown-it-task-lists": "^2.1.1",
+    "medium-zoom": "^1.0.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
 }

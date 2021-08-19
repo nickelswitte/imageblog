@@ -1,0 +1,28 @@
+<!-- check wether the breadcrumb property has been set -->
+<% if (typeof it.breadcrumb !== 'undefined') { %>
+
+<nav class="breadcrumb is-small" aria-label="breadcrumbs">
+  <ul>
+    <!-- Create a home label -->
+    <li><a href="/">Home</a></li>
+
+    <!-- Loop through the breadcrumb elements -->
+    <% for (let i = 0; i < it.breadcrumb.length; i++) { %>
+
+      <% if (i == it.breadcrumb.length - 1 ) { %>
+      <li class='is-active'><a href='#' aria-current='page'>
+      <% } else { %>
+      <li><a href='#'>
+      <% } %>
+
+      <%~ it.breadcrumb[i] %>
+      
+      <!-- It is also possible to paste html as a string -->
+      <%~ "</li></a>" %>
+      
+    <% }; %>
+
+  </ul>
+</nav>
+
+<% } %>
