@@ -1,0 +1,63 @@
+<!-- Include the basic layout -->
+<% layout('./layout01', it) %>
+
+<div class="columns is-variable is-8">
+
+    <div class="column is-one-thirds">
+
+        <div class="content">
+
+            <h3> Fujifilm X-T30 </h3>
+
+            <p>He’s not a word hero. He’s a word hero because he was captured. I like text that wasn’t captured. This placeholder text is gonna be HUGE. Lorem Ipsum's father was with Lee Harvey Oswald prior to Oswald's being, you know, shot. Trump Ipsum is calling for a total and complete shutdown of Muslim text entering your website.</p>
+
+
+
+            <p>Lorem Ipsum is unattractive, both inside and out. I fully understand why it’s former users left it for something else. They made a good decision. If Trump Ipsum weren’t my own words, perhaps I’d be dating it. He’s not a word hero. He’s a word hero because he was captured. I like text that wasn’t captured. Despite the constant negative ipsum covfefe.</p>
+
+
+        </div>
+        
+        
+    </div>
+
+    <div class="column">
+        
+        <div class="block">
+            <div class="card">
+                <div class="card-image">
+                    <figure class="image">
+                    <img src="<%= it.picture1 %>" alt="Placeholder image" class="zoomable">
+                    </figure>
+                </div>
+            </div>
+        </div>
+
+        <div class="columns">
+            <div class="column">
+                <div class="block">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image is-16by9">
+                            <img src="<%= it.picture2 %>" alt="Placeholder image" class="zoomable">
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="column">
+                <div class="block">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image is-16by9">
+                            <img src="<%= it.picture3 %>" alt="Placeholder image" class="zoomable">
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

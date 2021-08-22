@@ -4,3 +4,8 @@
 img {
     object-fit: cover;
 }
+
+.subtleLink {
+    color: #4d4d4d;
+    font-weight: 600;
+}

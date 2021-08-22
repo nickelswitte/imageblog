@@ -1,9 +1,23 @@
 <!--footer-->
 
 <footer class="footer">
-    <div class="content has-text-centered">
-        <p>
-        This is the footer of the test app by AppleSnap. The source code is licensed <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
-        </p>
+    <div class="content ">
+        <div class="columns">
+            <div class="column is-6 is-offset-3" >
+                <div class="columns is-variable is-8">
+                    <div class="column">
+                    Diese Seite wurde von <a href="#" class="subtleLink">Nickels Witte</a> erstellt. Es besteht keine Gewähr. Bli bla blubb.
+                    </div>
+                    <div class="column">
+                        <p class="is-size-5">Links</p>
+                        <a href="" class="subtleLink">Impressum</a>
+                        <br>
+                        <a href="" class="subtleLink">Datenschutz</a>
+                        <br>
+                        <a href="" class="subtleLink">Andere Projekte</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </footer>
