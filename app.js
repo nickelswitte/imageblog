@@ -71,6 +71,12 @@ app.get('/', (req, res) => {
     
 });
 
+app.get('/h', (req, res) => {
+
+    res.render("_home");
+
+});
+
 
 
 /**

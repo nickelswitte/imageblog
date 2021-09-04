@@ -9,3 +9,14 @@ img {
     color: #4d4d4d;
     font-weight: 600;
 }
+
+/* Bottom right text */
+.text-block {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background-color: rgba(41, 41, 41, 0.5);
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+}
