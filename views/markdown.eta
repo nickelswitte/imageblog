@@ -1,5 +1,0 @@
-<% layout('./layout01', it) %>
-
-<div class="content">
-    <%~ it.markdown %>
-</div>
