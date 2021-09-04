@@ -1,5 +1,5 @@
 
-<% layout('./layout01', it) %>
+<% layout('./basic', it) %>
 
 <div class="columns">
     <div class="column">

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%~ includeFile('./templates/header') %>
+</head>
+
+<body class="">
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8 is-offset-2">
+                    <%~ includeFile('./templates/navbar', it) %>
+
+                    <%~ includeFile('./templates/breadcrumb', it) %>
+
+                    <%~ includeFile('./templates/title', it) %>
+
+                    <!-- <hr> -->
+
+                    <%~ it.body %>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enter the footer -->
+    <%~ includeFile('./templates/footer') %>
+
+</body>
+
+</html> 

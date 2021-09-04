@@ -64,7 +64,7 @@ app.get('/', (req, res) => {
             subtitle: "Eine Reise auf die Ostseeinsel"
         }
         
-        res.render("imageCards/images-new", data);
+        res.render("_album", data);
         
     });
 

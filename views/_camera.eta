@@ -1,5 +1,5 @@
 <!-- Include the basic layout -->
-<% layout('./layout01', it) %>
+<% layout('./basic', it) %>
 
 <div class="columns is-variable is-8">
 
