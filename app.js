@@ -15,6 +15,9 @@ var md = new MarkdownIt().use(taskLists);
 const app = express();
 const port = 80;
 
+let albums = "";
+let images = [];
+
 
 // Enable render engine
 app.engine("eta", eta.renderFile);
@@ -27,22 +30,37 @@ app.use(express.static('node_modules/bulma/css'));
 app.use(express.static('node_modules/@creativebulma/bulma-divider/dist'));
 app.use(express.static('node_modules/medium-zoom/dist'));
 app.use(express.static('public'));
-// Include static files of bulma 
+// Include static files of bulma
+
+
+function init() {
+
+    const imageFolder = './public/img/';
+
+    fs.readdir(imageFolder, (err, files) => {
+        console.log(files);
+
+        // Store the folders into the albums variable
+        albums = files;
+    
+    });
+    
+}
 
 
 // Serve the index page
 app.get('/me', (req, res) => {
     res.render("_about", {
-        profilePicturePath: "/img/IMG_00034.jpg"
+        profilePicturePath: "/img/others/IMG_00034.jpg"
     })
 })
 
 // Serve the index page
 app.get('/kamera', (req, res) => {
     res.render("_camera", {
-        picture1: "/img/camera.jpg",
-        picture2: "/img/camera2.jpg",
-        picture3: "/img/objektiv.jpg"
+        picture1: "/img/camera/camera.jpg",
+        picture2: "/img/camera/camera2.jpg",
+        picture3: "/img/camera/objektiv.jpg"
     })
 })
 
@@ -55,20 +73,85 @@ app.get('/', (req, res) => {
     
 
     fs.readdir(testFolder, (err, files) => {
-        console.log(files);
+        // console.log(files);
 
-        let data = {
-            pathPrefix: "/img/bornholm/",
-            imageNames: files,
-            title: "Bornholm 2021",
-            subtitle: "Eine Reise auf die Ostseeinsel"
-        }
-        
-        res.render("_album", data);
-        
+        let index;
+
+        fs.readFile(testFolder + '/index.json', 'utf8' , (err, data) => {
+            if (err) {
+                console.error(err);
+                return;
+            }
+
+            console.log(data);
+
+            index = JSON.parse(data);
+
+            let dataRender = {
+                pathPrefix: "/img/bornholm/",
+                imageNames: files,
+                title: index.title,
+                subtitle: index.subtitle
+            }
+
+            res.render("_album", dataRender);
+        });
+
     });
 
-    
+});
+
+app.get('/album/:albumName', (req, res) => {
+
+    console.log(req.params.albumName);
+
+    // Save album parameter
+    let album = req.params.albumName;
+
+    // if this is an actual album
+    if (albums.includes(album)) {
+        
+        let albumPathLocal = './public/img/' + album + '/';
+        let albumPath = '/img/' + album + '/';
+        let index;
+
+        fs.readdir(albumPathLocal, (err, files) => {
+            console.log(files);
+
+            const indexArray = files.indexOf('index.json');
+            
+            if (indexArray > -1) {
+                files.splice(indexArray, 1);
+            }
+
+
+
+            fs.readFile(albumPathLocal + '/index.json', 'utf8' , (err, data) => {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+
+                // console.log(data);
+
+                index = JSON.parse(data);
+
+                let dataRender = {
+                    pathPrefix: albumPath,
+                    imageNames: files,
+                    title: index.title,
+                    subtitle: index.subtitle
+                }
+
+                res.render("_album", dataRender);
+            });
+        });
+
+
+    } else {
+        res.send("This album does not exist");
+    }
+
 });
 
 app.get('/h', (req, res) => {
@@ -107,4 +190,6 @@ app.use(function(req, res, next) {
 app.listen(port, () => {
   console.log('Example app listening at port' + port);
   // console.log("Paths variable is: " + keyUrlPairs)
-})
+});
+
+init();
