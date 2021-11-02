@@ -1,17 +1,48 @@
 <% layout('./basic', it) %>
 
-<div class="block">
-    <div class="card">
-        <div class="card-image">
-            <a href="/">
-                <figure class="image">
-                <img src="/img/others/IMG_00109.jpg" alt="Placeholder image">
-                </figure>
-                <div class="text-block">
-                    <h4 class="is-size-2">Bornholm 2021</h4>
-                    <p>What a beautiful sunrise</p>
-                </div>
-            <a>
-        </div>
+<div class="columns">
+    <div class="column">
+
+        <% 
+        let i = 0;
+        %>
+
+        <% // console.log(it.albums[0]) %>
+
+        <% while (i < it.albums.length) { %>
+            
+            
+            <%~ includeFile('./templates/albumPreview', { 
+                albumTitle: it.albums[i].data.title,
+                albumSubtitle: it.albums[i].data.subtitle,
+                href: '/' + it.albumRouting + '/' + it.albums[i].name,
+                thumbnail: it.albumsPathPrefix + it.albums[i].name + '/' + it.albums[i].data.thumbnail
+            }); %>
+
+            <% i += 2; %>
+
+        <% } %>
+
+    </div>
+    <div class="column">
+
+        <% 
+        let j = 1;
+        %>
+
+        <% // console.log(it.albums[0]) %>
+
+        <% while (j < it.albums.length) { %>
+            
+            <%~ includeFile('./templates/albumPreview', { 
+                albumTitle: it.albums[j].data.title,
+                albumSubtitle: it.albums[j].data.subtitle,
+                href: '/' + it.albumRouting + '/' + it.albums[j].name,
+                thumbnail: it.albumsPathPrefix + it.albums[j].name + '/' + it.albums[j].data.thumbnail
+            }); %>
+
+            <% j += 2; %>
+
+        <% } %>
     </div>
 </div>

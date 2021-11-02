@@ -3,8 +3,18 @@
 
 <div class="columns">
     <div class="column">
+
+        <div class="block">
+
+            <% if (typeof it.description !== 'undefined' && it.description != "") { %>
+                <hr>
+                <p><%= it.description %></p>
+            <% } %>
+            
+        </div>
+
         <!-- First column -->
-        <% console.log(it.imageNames[0])%>
+        <% // console.log(it.imageNames[0])%>
 
         <% 
         let i = 0;

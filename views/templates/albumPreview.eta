@@ -1,0 +1,18 @@
+<div class="block">
+    <div class="card">
+        <div class="card-image">
+            <a href="<%= it.href %>">
+                
+                <figure class="image">
+                    <img src="<%= it.thumbnail %>" alt="Placeholder image">
+                </figure>
+
+                <div class="text-block">
+                    <h5 class="is-size-4"><%= it.albumTitle %></h5>
+                    <!-- <p><%= it.albumSubtitle %></p> -->
+                </div>
+
+            <a>
+        </div>
+    </div>
+</div>
