@@ -49,10 +49,12 @@ function init() {
             return;
         }
 
-        console.log("All files and folders in " + albumFolderForLocalUse + " are the following: " + files);
+        console.log("All albums found in " + albumFolderForLocalUse + " are: " + files);
 
         // Store the folders into the albums variable
-        albums = files;
+        albums = files.sort(function (a, b) {
+            return a.localeCompare(b); //using String.prototype.localCompare()
+        });
     
     });
 
@@ -62,14 +64,22 @@ function init() {
     
 }
 
+/**
+ * Reads all album index.json and collects the information in one variable
+ */
 function collectAlbumsInfo() {
 
-    albums.forEach((album) => {
+    for (let i = 0; i < albums.length; i++) {
 
-        // console.log(album);
+        // Push this first, to create alphabetical order (reading file taked random amount of time)
+        albumsInfo.push({
+            name: albums[i],
+            data: null
+        });
+
 
         //TODO Catch when no index or thumbnail is present
-        let path = '.' + albumFolderForLocalUse + album + '/index.json';
+        let path = '.' + albumFolderForLocalUse + albums[i] + '/index.json';
 
         fs.readFile(path, 'utf8' , (err, data) => {
             if (err) {
@@ -81,18 +91,27 @@ function collectAlbumsInfo() {
             // console.log("hi");
             let json = JSON.parse(data);
 
-            albumsInfo.push({
-                name: album,
-                data: json
-            });
+            albumsInfo[i].data = json;
+
+            
         });
-    });
-
-    
-
-    // console.log("Test" + thumbnailFileNames);
+    }
 }
 
+/**
+ * Endpoint for the home page
+ */
+app.get('/', (req, res) => {
+    // console.log(albumsInfo);
+    
+    let dataRender = {
+        albumsPathPrefix: albumFolderForPublicUse,
+        albums: albumsInfo,
+        albumRouting: albumRounting
+    }
+
+    res.render("_home", dataRender);
+});
 
 // Serve the index page
 app.get('/me', (req, res) => {
@@ -112,46 +131,11 @@ app.get('/kamera', (req, res) => {
 
 // Serve the index page
 app.get('/test', (req, res) => {
-
-    console.log(albumsInfo);
-    res.send("Hi");
+    res.send(albumsInfo);
 })
 
 
 
-app.get('/', (req, res) => {
-
-    const testFolder = './public/img/bornholm/';
-    
-
-    fs.readdir(testFolder, (err, files) => {
-        // console.log(files);
-
-        let index;
-
-        fs.readFile(testFolder + '/index.json', 'utf8' , (err, data) => {
-            if (err) {
-                console.error(err);
-                return;
-            }
-
-            console.log(data);
-
-            index = JSON.parse(data);
-
-            let dataRender = {
-                pathPrefix: "/img/bornholm/",
-                imageNames: files,
-                title: index.title,
-                subtitle: index.subtitle
-            }
-
-            res.render("_album", dataRender);
-        });
-
-    });
-
-});
 
 /**
  * Album endpoint
@@ -214,25 +198,6 @@ app.get('/' + albumRounting + '/:albumName', (req, res) => {
 
 });
 
-app.get('/h', (req, res) => {
-
-    console.log(albumsInfo);
-    
-    
-    
-    
-    let dataRender = {
-        albumsPathPrefix: albumFolderForPublicUse,
-        albums: albumsInfo,
-        albumRouting: albumRounting
-    }
-
-
-    res.render("_home", dataRender);
-
-});
-
-
 
 /**
  * 404 Handler
@@ -262,7 +227,7 @@ app.use(function(req, res, next) {
  * Start the server
  */
 app.listen(port, () => {
-  console.log('Example app listening at port' + port);
+  console.log('Example app listening at port ' + port);
   // console.log("Paths variable is: " + keyUrlPairs)
 });
 

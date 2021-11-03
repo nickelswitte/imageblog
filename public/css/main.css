@@ -13,10 +13,13 @@ img {
 /* Bottom right text */
 .text-block {
     position: absolute;
-    bottom: 20px;
-    left: 20px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
     background-color: rgba(8, 8, 8, 0.0);
     color: white;
-    padding: 10px;
+    padding: 15px;
+    padding-top: 30px;
     border-radius: 5px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
 }

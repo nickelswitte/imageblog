@@ -3,20 +3,8 @@
 <footer class="footer">
     <div class="content ">
         <div class="columns">
-            <div class="column is-6 is-offset-3" >
-                <div class="columns is-variable is-8">
-                    <div class="column">
-                    Diese Seite wurde von <a href="#" class="subtleLink">Nickels Witte</a> erstellt. Es besteht keine Gewähr. Bli bla blubb.
-                    </div>
-                    <div class="column">
-                        <p class="is-size-5">Links</p>
-                        <a href="" class="subtleLink">Impressum</a>
-                        <br>
-                        <a href="" class="subtleLink">Datenschutz</a>
-                        <br>
-                        <a href="" class="subtleLink">Andere Projekte</a>
-                    </div>
-                </div>
+            <div class="column is-6 is-offset-3">
+                This page was created by <a href="#" class="subtleLink">Me</a> 
             </div>
         </div>
     </div>
