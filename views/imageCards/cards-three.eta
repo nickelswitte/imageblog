@@ -6,7 +6,9 @@
             <div class="card">
                 <div class="card-image">
                     <figure class="image is-5by3">
-                    <img src="<%= it.path1 %>" alt="Placeholder image" class="zoomable">
+                        <a href="<%= it.path1 %>">
+                            <img src="<%= it.path1 %>" alt="Placeholder image">
+                        </a>
                     </figure>
                 </div>
             </div>
@@ -18,7 +20,9 @@
             <div class="card">
                 <div class="card-image">
                     <figure class="image is-5by3">
-                    <img src="<%= it.path2 %>" alt="Placeholder image" class="zoomable">
+                        <a href="<%= it.path2 %>">
+                            <img src="<%= it.path2 %>" alt="Placeholder image">
+                        </a>
                     </figure>
                 </div>
             </div>
@@ -29,7 +33,9 @@
             <div class="card">
                 <div class="card-image">
                     <figure class="image is-5by3">
-                    <img src="<%= it.path3 %>" alt="Placeholder image" class="zoomable">
+                        <a href="<%= it.path3 %>">
+                            <img src="<%= it.path3 %>" alt="Placeholder image">
+                        </a>
                     </figure>
                 </div>
             </div>
