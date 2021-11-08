@@ -6,6 +6,10 @@ import MarkdownIt from 'markdown-it';
 import taskLists from 'markdown-it-task-lists';
 import path from 'path';
 import { fileURLToPath } from 'url';
+// import { Fancybox } from "@fancyapps/ui";
+import pkg from "@fancyapps/ui";
+const { Fancybox } = pkg;
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -33,6 +37,7 @@ app.use(express.json());
 app.use(express.static('node_modules/bulma/css'));
 app.use(express.static('node_modules/@creativebulma/bulma-divider/dist'));
 app.use(express.static('node_modules/medium-zoom/dist'));
+app.use(express.static('node_modules/@fancyapps/ui/dist'));
 app.use(express.static('public'));
 // Include static files of bulma
 
@@ -131,8 +136,11 @@ app.get('/kamera', (req, res) => {
 
 // Serve the index page
 app.get('/test', (req, res) => {
-    res.send(albumsInfo);
+    
+    //res.send(albumsInfo);
+    res.render("_test", {});
 })
+
 
 
 

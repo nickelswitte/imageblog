@@ -1,0 +1,137 @@
+<% layout('./basic', it) %>
+
+<script>
+Fancybox.defaults.Hash = false;
+
+// #1 Grouped Images
+Fancybox.bind("#grouped-images-1 a", {
+  infinite: false,
+  hideScrollbar: true,
+  Toolbar: {
+    display: [
+      { id: "prev", position: "center" },
+      { id: "counter", position: "center" },
+      { id: "next", position: "center" },
+      "slideshow",
+      "fullscreen",
+      "thumbs",
+      "close",
+    ],
+  },
+});
+
+// #2 Single Images
+Fancybox.bind('[data-fancybox="single"]', {
+  groupAttr: false,
+});
+
+// #3 Single Images
+Fancybox.bind("#single-images a", {
+  // Your options
+});
+
+// #4 Grouped Images
+Fancybox.bind("#grouped-images-2 a", {
+  groupAll: true,
+  
+});
+
+
+</script>
+
+<h1 class="mt-12 mb-8 px-6 text-center text-lg md:text-2xl font-semibold">
+  Fancybox Grouping
+</h1>
+
+<h2 class="mt-12 mb-6 px-6 text-center text-lg md:text-lg font-semibold">
+  #1 Grouped Images (using `data-fancybox` attribute)
+</h2>
+
+<div id="grouped-images-1">
+  <p class="text-center mb-4">First group</p>
+
+  <div class="pb-8 flex flex-wrap gap-5 justify-center max-w-5xl mx-auto px-6">
+    <a
+      data-caption="Vestibulum lobortis ultricies ipsum, a maximus ligula dignissim in. Sed consectetur tellus egestas, consequat dolor at, tempus augue. "
+      data-fancybox="gallery-1"
+      href="https://lipsum.app/id/1/800x600"
+    >
+      <img class="rounded" src="https://lipsum.app/id/1/200x150" />
+    </a>
+    <a
+      data-caption="Short caption"
+      data-fancybox="gallery-1"
+      href="https://lipsum.app/id/2/800x600"
+    >
+      <img class="rounded" src="https://lipsum.app/id/2/200x150" />
+    </a>
+    <a data-fancybox="gallery-1" href="https://lipsum.app/id/3/800x600">
+      <img class="rounded" src="https://lipsum.app/id/3/200x150" />
+    </a>
+  </div>
+
+  <p class="text-center mb-4">Second group</p>
+
+  <div class="pb-16 flex flex-wrap gap-5 justify-center max-w-5xl mx-auto px-6">
+    <a data-fancybox="gallery-2" href="https://lipsum.app/id/4/800x600">
+      <img class="rounded" src="https://lipsum.app/id/4/200x150" />
+    </a>
+    <a data-fancybox="gallery-2" href="https://lipsum.app/id/5/800x600">
+      <img class="rounded" src="https://lipsum.app/id/5/200x150" />
+    </a>
+  </div>
+</div>
+
+<h2 class="mb-6 px-6 text-center text-lg md:text-lg font-semibold">
+  #2 Single Images (grouping disabled using `groupAttr` option)
+</h2>
+
+<div class="pb-16 flex flex-wrap gap-5 justify-center max-w-5xl mx-auto px-6">
+  <a data-fancybox="single" href="https://lipsum.app/id/6/800x600">
+    <img class="rounded" src="https://lipsum.app/id/6/200x150" />
+  </a>
+  <a data-fancybox="single" href="https://lipsum.app/id/7/800x600">
+    <img class="rounded" src="https://lipsum.app/id/7/200x150" />
+  </a>
+  <a data-fancybox="single" href="https://lipsum.app/id/8/800x600">
+    <img class="rounded" src="https://lipsum.app/id/8/200x150" />
+  </a>
+</div>
+
+<h2 class="mb-6 px-6 text-center text-lg md:text-lg font-semibold">
+  #3 Single Images (links without `data-fancybox` attribute)
+</h2>
+
+<div
+  id="single-images"
+  class="pb-16 flex flex-wrap gap-5 justify-center max-w-5xl mx-auto px-6"
+>
+  <a href="https://lipsum.app/id/10/800x600">
+    <img class="rounded" src="https://lipsum.app/id/10/200x150" />
+  </a>
+  <a href="https://lipsum.app/id/11/800x600">
+    <img class="rounded" src="https://lipsum.app/id/11/200x150" />
+  </a>
+  <a href="https://lipsum.app/id/12/800x600">
+    <img class="rounded" src="https://lipsum.app/id/12/200x150" />
+  </a>
+</div>
+
+<h2 class="mb-6 px-6 text-center text-lg md:text-lg font-semibold">
+  #4 Grouped Images (using `groupAll` option)
+</h2>
+
+<div
+  id="grouped-images-2"
+  class="pb-16 flex flex-wrap gap-5 justify-center max-w-5xl mx-auto px-6"
+>
+  <a href="https://lipsum.app/id/15/800x600">
+    <img class="rounded" src="https://lipsum.app/id/15/200x150" />
+  </a>
+  <a href="https://lipsum.app/id/16/800x600">
+    <img class="rounded" src="https://lipsum.app/id/16/200x150" />
+  </a>
+  <a href="https://lipsum.app/id/17/800x600">
+    <img class="rounded" src="https://lipsum.app/id/17/200x150" />
+  </a>
+</div>

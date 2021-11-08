@@ -1,5 +1,6 @@
 @import '/bulma.min.css';
 @import '/bulma-divider.min.css';
+@import '/fancybox.css';
 
 img {
     object-fit: cover;
