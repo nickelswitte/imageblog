@@ -44,29 +44,25 @@ app.use(express.static('public'));
 /**
  * Function to initially do some tasks
  */
-function init() {
+async function init() {
 
-    // Scan all albums. The dot is attached to make the path relative
-    fs.readdir('.' + albumFolderForLocalUse, (err, files) => {
-
-        if (err) {
-            console.error(err);
-            return;
-        }
+    try {
+        // Scan all albums. The dot is attached to make the path relative
+        let files = await fs.promises.readdir('.' + albumFolderForLocalUse);
 
         console.log("All albums found in " + albumFolderForLocalUse + " are: " + files);
 
-        // Store the folders into the albums variable
+        // Store the albums into the albums variable and sort alphabetically
         albums = files.sort(function (a, b) {
             return a.localeCompare(b); //using String.prototype.localCompare()
         });
-    
-    });
+    } catch (err) {
+        console.error(err);
+    }
 
-    
-    setTimeout(collectAlbumsInfo, 1500);
-    
-    
+    // Wait a bit for all to be finished and then continue with album info collection
+    collectAlbumsInfo();
+       
 }
 
 /**
@@ -84,8 +80,11 @@ function collectAlbumsInfo() {
 
 
         //TODO Catch when no index or thumbnail is present
+
+        // Create path to album index file
         let path = '.' + albumFolderForLocalUse + albums[i] + '/index.json';
 
+        // Read index.json file
         fs.readFile(path, 'utf8' , (err, data) => {
             if (err) {
                 console.error(err);
@@ -96,6 +95,7 @@ function collectAlbumsInfo() {
             // console.log("hi");
             let json = JSON.parse(data);
 
+            // Append content to albumsInfo variable
             albumsInfo[i].data = json;
 
             
@@ -152,7 +152,7 @@ app.get('/' + albumRounting + '/:albumName', (req, res) => {
 
     // console.log(req.params.albumName);
 
-    // Save album parameter
+    // Extract album parameter from request
     let album = req.params.albumName;
 
     // if this is an actual album
