@@ -30,7 +30,7 @@
             <div class="card">
                 <div class="card-image">
                     <figure class="image is-4by5">
-                    <img src="<%= it.profilePicturePath %>" alt="Placeholder image" class="zoomable">
+                        <img src="<%= it.profilePicturePath %>" alt="Placeholder image" class="zoomable">
                     </figure>
                 </div>
             </div>
