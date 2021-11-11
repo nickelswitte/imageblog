@@ -3,9 +3,9 @@
         <div class="block">
             <div class="card">
                 <div class="card-image">
-                    <figure class="image is-4by3">
-                        <a href="<%= it.path1 %>">
-                            <img src="<%= it.path1 %>" alt="Placeholder image">
+                    <figure class="image is-3by2">
+                        <a href="<%= it.image_1_full %>">
+                            <img src="<%= it.image_1_full %>" alt="Placeholder image">
                         </a>
                     </figure>
                 </div>
@@ -17,26 +17,26 @@
         <div class="block">
             <div class="card">
                 <div class="card-image">
-                    <figure class="image is-4by3">
-                        <a href="<%= it.path2 %>">
-                            <img src="<%= it.path2 %>" alt="Placeholder image">
+                    <figure class="image is-3by2">
+                        <a href="<%= it.image_2_full %>">
+                            <img src="<%= it.image_2_thumb %>" alt="Placeholder image">
                         </a>
                     </figure>
                 </div>
             </div>
         </div>
 
-        <div class="block">
-            <div class="card">
-                <div class="card-image">
-                    <figure class="image is-4by3">
-                        <a href="<%= it.path3 %>">
-                            <img src="<%= it.path3 %>" alt="Placeholder image">
-                        </a>
-                    </figure>
-                </div>
+        
+        <div class="card">
+            <div class="card-image">
+                <figure class="image is-3by2">
+                    <a href="<%= it.image_3_full %>">
+                        <img src="<%= it.image_3_thumb %>" alt="Placeholder image">
+                    </a>
+                </figure>
             </div>
         </div>
+        
     </div>
     
     

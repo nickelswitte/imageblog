@@ -30,3 +30,7 @@ img {
 .with-fancybox {
     overflow: hidden;
 }
+
+.block-custom-album {
+    margin-bottom: 1.0rem;
+}

@@ -23,10 +23,10 @@
             
             
             <%~ includeFile('./templates/albumPreview', { 
-                albumTitle: it.albums[i].data.title,
-                albumSubtitle: it.albums[i].data.subtitle,
+                albumTitle: it.albums[i].metadata.title,
+                albumSubtitle: it.albums[i].metadata.subtitle,
                 href: '/' + it.albumRouting + '/' + it.albums[i].name,
-                thumbnail: it.albumsPathPrefix + it.albums[i].name + '/' + it.albums[i].data.thumbnail
+                thumbnail: it.albumsPathPrefix + it.albums[i].name + '/' + it.albums[i].metadata.thumbnail
             }); %>
 
             <% i += 2; %>
@@ -43,10 +43,10 @@
         <% while (j < it.albums.length) { %>
             
             <%~ includeFile('./templates/albumPreview', { 
-                albumTitle: it.albums[j].data.title,
-                albumSubtitle: it.albums[j].data.subtitle,
+                albumTitle: it.albums[j].metadata.title,
+                albumSubtitle: it.albums[j].metadata.subtitle,
                 href: '/' + it.albumRouting + '/' + it.albums[j].name,
-                thumbnail: it.albumsPathPrefix + it.albums[j].name + '/' + it.albums[j].data.thumbnail
+                thumbnail: it.albumsPathPrefix + it.albums[j].name + '/' + it.albums[j].metadata.thumbnail
             }); %>
 
             <% j += 2; %>

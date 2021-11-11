@@ -21,14 +21,15 @@
         let presets = 0;
         %>
 
-        <% while (i < it.imageNames.length) {
+        <% while (i < it.images.full.length) {
 
             switch (presets) {
                 case 0: %>
 
 
                     <%~ includeFile('./imageCards/cards-one', { 
-                        path1: it.pathPrefix + it.imageNames[i]
+                        image_1_full: it.pathPrefix + it.images.full[i],
+                        image_1_thumb: it.pathPrefix + it.images.thumb[i],
                     }); %>
 
                     <% 
@@ -39,7 +40,7 @@
 
                 case 1: 
 
-                    if ((it.imageNames.length - i) < 2) {
+                    if ((it.images.full.length - i) < 2) {
                         presets++;
                         break;
                     }
@@ -47,8 +48,10 @@
                     %>
                     
                     <%~ includeFile('./imageCards/cards-two', { 
-                        path1: it.pathPrefix + it.imageNames[i],
-                        path2: it.pathPrefix + it.imageNames[i + 1]
+                        image_1_full: it.pathPrefix + it.images.full[i],
+                        image_1_thumb: it.pathPrefix + it.images.thumb[i],
+                        image_2_full: it.pathPrefix + it.images.full[i + 1],
+                        image_2_thumb: it.pathPrefix + it.images.thumb[i + 1]
                     }); %>
 
                     <% 
@@ -59,17 +62,20 @@
                     
                 case 2: 
 
-                    if ((it.imageNames.length - i) < 3) {
+                    if ((it.images.full.length - i) < 3) {
                         presets++;
                         break;
                     }
 
                     %>
 
-                    <%~ includeFile('./imageCards/cards-three', { 
-                        path1: it.pathPrefix + it.imageNames[i],
-                        path2: it.pathPrefix + it.imageNames[i + 1],
-                        path3: it.pathPrefix + it.imageNames[i + 2]
+                    <%~ includeFile('./imageCards/cards-three', {
+                        image_1_full: it.pathPrefix + it.images.full[i],
+                        image_1_thumb: it.pathPrefix + it.images.thumb[i],
+                        image_2_full: it.pathPrefix + it.images.full[i + 1],
+                        image_2_thumb: it.pathPrefix + it.images.thumb[i + 1],
+                        image_3_full: it.pathPrefix + it.images.full[i + 2],
+                        image_3_thumb: it.pathPrefix + it.images.thumb[i + 2]
                     }); %>
 
                     <% 
@@ -80,7 +86,7 @@
 
                 case 3: 
 
-                    if ((it.imageNames.length - i) < 3) {
+                    if ((it.images.full.length - i) < 3) {
                         presets++;
                         break;
                     }
@@ -89,9 +95,12 @@
 
 
                     <%~ includeFile('./imageCards/cards-mixed1', { 
-                        path1: it.pathPrefix + it.imageNames[i],
-                        path2: it.pathPrefix + it.imageNames[i + 1],
-                        path3: it.pathPrefix + it.imageNames[i + 2]
+                        image_1_full: it.pathPrefix + it.images.full[i],
+                        image_1_thumb: it.pathPrefix + it.images.thumb[i],
+                        image_2_full: it.pathPrefix + it.images.full[i + 1],
+                        image_2_thumb: it.pathPrefix + it.images.thumb[i + 1],
+                        image_3_full: it.pathPrefix + it.images.full[i + 2],
+                        image_3_thumb: it.pathPrefix + it.images.thumb[i + 2]
                     }); %>
 
                     <% 
@@ -101,16 +110,19 @@
                     break;
                 case 4: 
 
-                    if ((it.imageNames.length - i) < 3) {
+                    if ((it.images.full.length - i) < 3) {
                         presets++;
                         break;
                     }
 
                     %> 
                     <%~ includeFile('./imageCards/cards-mixed2', { 
-                        path1: it.pathPrefix + it.imageNames[i],
-                        path2: it.pathPrefix + it.imageNames[i + 1],
-                        path3: it.pathPrefix + it.imageNames[i + 2]
+                        image_1_full: it.pathPrefix + it.images.full[i],
+                        image_1_thumb: it.pathPrefix + it.images.thumb[i],
+                        image_2_full: it.pathPrefix + it.images.full[i + 1],
+                        image_2_thumb: it.pathPrefix + it.images.thumb[i + 1],
+                        image_3_full: it.pathPrefix + it.images.full[i + 2],
+                        image_3_thumb: it.pathPrefix + it.images.thumb[i + 2]
                     }); %>
 
                     <% 
@@ -120,7 +132,7 @@
                     break;
                 case 5: 
 
-                    if ((it.imageNames.length - i) < 2) {
+                    if ((it.images.full.length - i) < 2) {
                         presets++;
                         break;
                     }
@@ -128,8 +140,10 @@
                     %> 
 
                     <%~ includeFile('./imageCards/cards-mixed3', { 
-                        path1: it.pathPrefix + it.imageNames[i],
-                        path2: it.pathPrefix + it.imageNames[i + 1]
+                        image_1_full: it.pathPrefix + it.images.full[i],
+                        image_1_thumb: it.pathPrefix + it.images.thumb[i],
+                        image_2_full: it.pathPrefix + it.images.full[i + 1],
+                        image_2_thumb: it.pathPrefix + it.images.thumb[i + 1]
                     }); %>
 
                     <% 
@@ -140,15 +154,17 @@
 
                 case 6: 
 
-                    if ((it.imageNames.length - i) < 2) {
+                    if ((it.images.full.length - i) < 2) {
                         presets++;
                         break;
                     }
 
                     %>
                     <%~ includeFile('./imageCards/cards-mixed4', { 
-                        path1: it.pathPrefix + it.imageNames[i],
-                        path2: it.pathPrefix + it.imageNames[i + 1]
+                        image_1_full: it.pathPrefix + it.images.full[i],
+                        image_1_thumb: it.pathPrefix + it.images.thumb[i],
+                        image_2_full: it.pathPrefix + it.images.full[i + 1],
+                        image_2_thumb: it.pathPrefix + it.images.thumb[i + 1]
                     }); %>
 
                     <% 
