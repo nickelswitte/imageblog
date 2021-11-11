@@ -44,8 +44,20 @@ app.use(express.static('public'));
 /**
  * Function to initially do some tasks
  */
-async function init() {
+function init() {
 
+    collectAlbumsInfo();
+       
+}
+
+
+
+/**
+ * Reads all album index.json and collects the information in one variable
+ */
+async function collectAlbumsInfo() {
+    
+    // Scan Albums directory
     try {
         // Scan all albums. The dot is attached to make the path relative
         let files = await fs.promises.readdir('.' + albumFolderForLocalUse);
@@ -57,25 +69,22 @@ async function init() {
             return a.localeCompare(b); //using String.prototype.localCompare()
         });
     } catch (err) {
+        console.log("There has been an error while reading the albums directory");
         console.error(err);
     }
 
-    // Wait a bit for all to be finished and then continue with album info collection
-    collectAlbumsInfo();
-       
-}
 
-/**
- * Reads all album index.json and collects the information in one variable
- */
-function collectAlbumsInfo() {
-
+    // Loop through the albums
     for (let i = 0; i < albums.length; i++) {
 
         // Push this first, to create alphabetical order (reading file taked random amount of time)
         albumsInfo.push({
             name: albums[i],
-            data: null
+            metadata: null,
+            files: {
+                full: [],
+                thumb: []
+            }
         });
 
 
@@ -84,22 +93,71 @@ function collectAlbumsInfo() {
         // Create path to album index file
         let path = '.' + albumFolderForLocalUse + albums[i] + '/index.json';
 
-        // Read index.json file
-        fs.readFile(path, 'utf8' , (err, data) => {
-            if (err) {
-                console.error(err);
-                return;
-            }
+        
+        // Read index.json
+        try {
+            // Read index.json file
+            let data = await fs.promises.readFile(path, 'utf8');
 
-            // console.log(data);
-            // console.log("hi");
             let json = JSON.parse(data);
 
             // Append content to albumsInfo variable
-            albumsInfo[i].data = json;
+            albumsInfo[i].metadata = json;
+            
+        } catch (err) {
+            console.log("There has been an error while reading the index.json of the " + albums[i] + " directory");
+            console.error(err);
+        }
+
+        // Read filenames of the album
+        try {
+
+            let albumPathPublic = albumFolderForLocalUse + albums[i] + '/';
+
+            // Read all files from folder
+            let albumFiles = await fs.promises.readdir('.' + albumPathPublic);
+
+            /*
+            // Find index.js and remove of list
+            const indexOfIndexJson = files.indexOf('index.json');
+            if (indexOfIndexJson > -1) {
+                files.splice(indexOfIndexJson, 1);
+            }
+            */
+            
+            albumFiles.forEach(file => {
+                if (file.includes('full')) {
+                    albumsInfo[i].files.full.push(file);
+
+                } else if (file.includes('thumb')) {
+                    albumsInfo[i].files.thumb.push(file);
+                } else {
+                    // This is the case for all other files, currently then can be discarded
+                }
+                
+            });
 
             
-        });
+        } catch (err) {
+            console.log("There has been an error while reading the " + albums[i] + " directory");
+            console.error(err);
+        }
+
+        
+    }
+
+    // console.log(albumsInfo);
+    /* 
+    console.log(albumsInfo[0].files.full);
+    console.log(albumsInfo[0].files.thumb); */
+
+
+}
+
+function getAlbumIndex(albumName) {
+    for (let i = 0; i < albumsInfo.length; i++) {
+        if (albumsInfo[i].name == albumName)
+            return i;
     }
 }
 
@@ -150,8 +208,6 @@ app.get('/test', (req, res) => {
  */
 app.get('/' + albumRounting + '/:albumName', (req, res) => {
 
-    // console.log(req.params.albumName);
-
     // Extract album parameter from request
     let album = req.params.albumName;
 
@@ -159,50 +215,26 @@ app.get('/' + albumRounting + '/:albumName', (req, res) => {
     if (!albums.includes(album)) {
         res.send("This album does not exist");
     }
+    
+    let albumPath = albumFolderForPublicUse + album + '/';
+    let albumIndex = getAlbumIndex(album);
 
+    let dataRender = {
+        pathPrefix: albumPath,
+        images: {
+            full: albumsInfo[albumIndex].files.full,
+            thumb: albumsInfo[albumIndex].files.thumb
+        },
+        title: albumsInfo[albumIndex].metadata.title,
+        subtitle: albumsInfo[albumIndex].metadata.subtitle,
+        description: albumsInfo[albumIndex].metadata.description
+    }
+
+    // console.log(dataRender);
+
+    res.render("_album", dataRender);
 
     
-    let albumPathPublic = albumFolderForLocalUse + album + '/';
-    let albumPath = albumFolderForPublicUse + album + '/';
-    let albumContext;
-
-    // Read all files from folder
-    fs.readdir('.' + albumPathPublic, (err, files) => {
-        if (err) {
-            console.error(err);
-            return;
-        }
-
-        console.log(files);
-
-        // Find index.js and remove of list
-        const indexOfIndexJson = files.indexOf('index.json');
-        if (indexOfIndexJson > -1) {
-            files.splice(indexOfIndexJson, 1);
-        }
-
-        // Read content from index file
-        fs.readFile('.' + albumPathPublic + '/index.json', 'utf8' , (err, data) => {
-            if (err) {
-                console.error(err);
-                return;
-            }
-
-            // console.log(data);
-
-            albumContext = JSON.parse(data);
-
-            let dataRender = {
-                pathPrefix: albumPath,
-                imageNames: files,
-                title: albumContext.title,
-                subtitle: albumContext.subtitle,
-                description: albumContext.description
-            }
-
-            res.render("_album", dataRender);
-        });
-    });
 
 });
 
@@ -240,4 +272,6 @@ app.listen(port, () => {
 });
 
 init();
+
+
 
