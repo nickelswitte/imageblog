@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
         "close",
       ],
     },
+    Thumbs: {
+      autoStart: false,
+    },
   });
 
   
