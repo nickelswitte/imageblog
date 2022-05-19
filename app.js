@@ -56,13 +56,15 @@ function init() {
  * Reads all album index.json and collects the information in one variable
  */
 async function collectAlbumsInfo() {
+
+    console.log('Scanning albums...');
     
     // Scan Albums directory
     try {
         // Scan all albums. The dot is attached to make the path relative
         let files = await fs.promises.readdir('.' + albumFolderForLocalUse);
 
-        console.log("All albums found in " + albumFolderForLocalUse + " are: " + files);
+        // console.log("All albums found in " + albumFolderForLocalUse + " are: " + files);
 
         // Store the albums into the albums variable and sort alphabetically
         albums = files.sort(function (a, b) {
@@ -105,8 +107,17 @@ async function collectAlbumsInfo() {
             albumsInfo[i].metadata = json;
             
         } catch (err) {
-            console.log("There has been an error while reading the index.json of the " + albums[i] + " directory");
-            console.error(err);
+
+            if (err.code === 'ENOENT') {
+                console.error('Index file for album \"' + albums[i] + '\" not found!');
+            } else {
+                console.log("There has been an error while reading the index.json of the " + albums[i] + " directory");
+                console.error(err);
+            }
+
+            // Remove this album entry in the albumsInfo array, when no index file is found
+            // TODO Remove this album
+
         }
 
         // Read filenames of the album
@@ -146,10 +157,7 @@ async function collectAlbumsInfo() {
         
     }
 
-    // console.log(albumsInfo);
-    /* 
-    console.log(albumsInfo[0].files.full);
-    console.log(albumsInfo[0].files.thumb); */
+    logAlbumsInfo();
 
 
 }
@@ -159,6 +167,14 @@ function getAlbumIndex(albumName) {
         if (albumsInfo[i].name == albumName)
             return i;
     }
+}
+
+function logAlbumsInfo() {
+    console.log('--\nThe following complete albums have been found:\n');
+
+    albumsInfo.forEach(album => {
+        console.log(album.name + ' - ' + album.files.full.length + ' images');
+    })
 }
 
 /**

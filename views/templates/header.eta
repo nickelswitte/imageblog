@@ -1,15 +1,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>template-engine-example</title>
+<title>Überblendet</title>
 <meta name="author" content="AppleSnap">
 <meta name="description" content="description here">
 <meta name="keywords" content="keywords,here">
+
+<!-- favicon elements -->
+<link rel="apple-touch-icon" sizes="180x180" href="/fav/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/fav/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/fav/favicon-16x16.png">
+<link rel="manifest" href="/fav/site.webmanifest">
+<link rel="mask-icon" href="/fav/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+
 
 <!-- Include Bulma -->
 <!-- <link href="/bulma.min.css" rel="stylesheet" type="text/css"> -->
 <link href="/css/main.css" rel="stylesheet" type="text/css">
 <script src="/js/basics.js"></script>
-<script src="/js/medium-zoom.js" type="module"></script>
-<!-- <script src="/medium-zoom.min.js"></script> -->
 <script src="/fancybox.umd.js"></script>
 <script src="/js/fancybox.js"></script>

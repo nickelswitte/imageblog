@@ -1,3 +1,4 @@
+
 @import '/bulma.min.css';
 @import '/bulma-divider.min.css';
 @import '/fancybox.css';
@@ -34,3 +35,11 @@ img {
 .block-custom-album {
     margin-bottom: 1.0rem;
 }
+
+/*
+nav.navbar {
+    height: 8rem !important;
+    min-height: unset;
+    background-color: aqua;
+}*/
+
