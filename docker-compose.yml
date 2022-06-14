@@ -1,0 +1,10 @@
+services:
+  node-imageblog-direct:
+    build: .
+    volumes:
+      - .:/usr/src/app
+    network_mode: bridge
+    expose:
+      - 80
+    environment:
+      VIRTUAL_HOST: ibd.nickelswitte.de
