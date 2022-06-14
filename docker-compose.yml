@@ -1,5 +1,5 @@
 services:
-  node-imageblog-direct:
+  imageblog:
     build: .
     volumes:
       - .:/usr/src/app
@@ -7,4 +7,4 @@ services:
     expose:
       - 80
     environment:
-      VIRTUAL_HOST: ibd.nickelswitte.de
+      VIRTUAL_HOST: xn--berblendet-8db.de, überblendet.de, www.überblendet.de
