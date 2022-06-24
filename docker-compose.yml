@@ -3,8 +3,11 @@ services:
     build: .
     volumes:
       - .:/usr/src/app
-    network_mode: bridge
     expose:
       - 80
     environment:
-      VIRTUAL_HOST: xn--berblendet-8db.de, überblendet.de, www.überblendet.de
+      VIRTUAL_HOST: xn--berblendet-8db.de, überblendet.de, www.überblendet.de, www.xn--berblendet-8db.de
+
+networks:
+  default:
+      name: nginx-proxy
