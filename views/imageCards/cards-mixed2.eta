@@ -32,7 +32,7 @@
             <div class="card-image">
                 <figure class="image is-4by3">
                     <a href="<%= it.image_3_full %>">
-                        <img src="<%= it.image_3_full %>" alt="Placeholder image">
+                        <img src="<%= it.image_3_thumb %>" alt="Placeholder image">
                     </a>
                 </figure>
             </div>

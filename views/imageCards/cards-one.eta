@@ -3,7 +3,7 @@
         <div class="card-image grouped-images-1">
             <figure class="image">
                 <a href="<%= it.image_1_full %>">
-                    <img src="<%= it.image_1_full %>" alt="Placeholder image">
+                    <img src="<%= it.image_1_thumb %>" alt="Placeholder image">
                 </a>
             </figure>
         </div>

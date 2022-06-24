@@ -26,7 +26,7 @@
                 albumTitle: it.albums[i].metadata.title,
                 albumSubtitle: it.albums[i].metadata.subtitle,
                 href: '/' + it.albumRouting + '/' + it.albums[i].name,
-                thumbnail: it.albumsPathPrefix + it.albums[i].name + '/' + it.albums[i].metadata.thumbnail
+                thumbnail: it.albumsPathPrefix + it.albums[i].name + '/prev/' + it.albums[i].metadata.thumbnail
             }); %>
 
             <% i += 2; %>
@@ -46,7 +46,7 @@
                 albumTitle: it.albums[j].metadata.title,
                 albumSubtitle: it.albums[j].metadata.subtitle,
                 href: '/' + it.albumRouting + '/' + it.albums[j].name,
-                thumbnail: it.albumsPathPrefix + it.albums[j].name + '/' + it.albums[j].metadata.thumbnail
+                thumbnail: it.albumsPathPrefix + it.albums[j].name + '/prev/' + it.albums[j].metadata.thumbnail
             }); %>
 
             <% j += 2; %>

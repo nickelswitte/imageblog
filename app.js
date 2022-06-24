@@ -57,6 +57,8 @@ function init() {
  */
 async function collectAlbumsInfo() {
 
+    albumsInfo = [];
+
     console.log('Scanning albums...');
     
     // Scan Albums directory
@@ -75,6 +77,7 @@ async function collectAlbumsInfo() {
         console.error(err);
     }
 
+    console.log(albums);
 
     // Loop through the albums
     for (let i = 0; i < albums.length; i++) {
@@ -125,7 +128,7 @@ async function collectAlbumsInfo() {
 
             let albumPathPublic = albumFolderForLocalUse + albums[i] + '/';
 
-            // Read all files from folder
+            // Read folder for the big images and compile it
             let albumFiles = await fs.promises.readdir('.' + albumPathPublic);
 
             /*
@@ -137,16 +140,29 @@ async function collectAlbumsInfo() {
             */
             
             albumFiles.forEach(file => {
-                if (file.includes('full')) {
+                if (file.includes(albums[i])) {
                     albumsInfo[i].files.full.push(file);
 
-                } else if (file.includes('thumb')) {
-                    albumsInfo[i].files.thumb.push(file);
                 } else {
                     // This is the case for all other files, currently then can be discarded
                 }
                 
             });
+
+            // Read folder with thumbnails
+            let albumFilesThumb = await fs.promises.readdir('.' + albumPathPublic + "prev");
+
+            albumFilesThumb.forEach(file => {
+                if (file.includes('prev')) {
+                    //console.log(file);
+                    albumsInfo[i].files.thumb.push("prev/" + file);
+                } else {
+                    // This is the case for all other files, currently then can be discarded
+                }
+                
+            });
+
+           
 
             
         } catch (err) {
@@ -157,6 +173,7 @@ async function collectAlbumsInfo() {
         
     }
 
+    //console.log(albumsInfo);
     logAlbumsInfo();
 
 

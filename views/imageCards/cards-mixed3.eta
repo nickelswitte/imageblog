@@ -5,7 +5,7 @@
                 <div class="card-image">
                     <figure class="image is-5by3">
                         <a href="<%= it.image_1_full %>">
-                            <img src="<%= it.image_1_full %>" alt="Placeholder image">
+                            <img src="<%= it.image_1_thumb %>" alt="Placeholder image">
                         </a>
                     </figure>
                 </div>

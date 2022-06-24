@@ -7,7 +7,7 @@
                 <div class="card-image">
                     <figure class="image is-square">
                         <a href="<%= it.image_1_full %>">
-                            <img src="<%= it.image_1_full %>" alt="Placeholder image">
+                            <img src="<%= it.image_1_thumb %>" alt="Placeholder image">
                         </a>
                     </figure>
                 </div>
@@ -21,7 +21,7 @@
                 <div class="card-image">
                     <figure class="image is-square">
                         <a href="<%= it.image_2_full %>">
-                            <img src="<%= it.image_2_full %>" alt="Placeholder image">
+                            <img src="<%= it.image_2_thumb %>" alt="Placeholder image">
                         </a>
                     </figure>
                 </div>
