@@ -1,9 +1,7 @@
 <nav class="navbar wow is-transparent" role="navigation" aria-label="main navigation">
 
   <div class="navbar-brand wow">
-    <a class="navbar-item wow" href="/">
-      <img src="/img/logo/ue_long_small.png" alt="Überblendet Logo" width="250" height="78">
-    </a>
+    <a class="navbar-item wow navbar-ue-logo" href="/"></a>
 
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" id="navBurger">
       <span aria-hidden="true"></span>
