@@ -226,16 +226,21 @@ app.get('/%C3%BCber', aboutRouting);
 
 
 
-// Serve the index page
+// Serve the contact page
 app.get('/kontakt', (req, res) => {
     res.render("_contact", {
         picture1: "/img/_others/mail.png",
     })
 })
 
+// Serve the impressum page
+app.get('/impressum', (req, res) => {
+    res.render("_impressum")
+})
 
 
-// Serve the index page
+
+// Serve a test page
 app.get('/test', (req, res) => {
     
     //res.send(albumsInfo);
