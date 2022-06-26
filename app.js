@@ -77,7 +77,7 @@ async function collectAlbumsInfo() {
         console.error(err);
     }
 
-    console.log(albums);
+    // console.log(albums);
 
     // Loop through the albums
     for (let i = 0; i < albums.length; i++) {
@@ -179,6 +179,9 @@ async function collectAlbumsInfo() {
 
 }
 
+/**
+ * Returns the album index of a specified album in the album list
+ */
 function getAlbumIndex(albumName) {
     for (let i = 0; i < albumsInfo.length; i++) {
         if (albumsInfo[i].name == albumName)
@@ -209,21 +212,28 @@ app.get('/', (req, res) => {
     res.render("_home", dataRender);
 });
 
-// Serve the index page
-app.get('/me', (req, res) => {
+// Create a callback function for the about page
+var aboutRouting = function (req, res) {
     res.render("_about", {
         profilePicturePath: "/img/_others/IMG_00034.jpg"
     })
-})
+}
+
+// Create routes that serve all variants of über
+app.get('/' + encodeURIComponent('über'), aboutRouting);
+app.get('/über', aboutRouting);
+app.get('/%C3%BCber', aboutRouting);
+
+
 
 // Serve the index page
-app.get('/kamera', (req, res) => {
-    res.render("_camera", {
-        picture1: "/img/_camera/camera.jpg",
-        picture2: "/img/_camera/camera2.jpg",
-        picture3: "/img/_camera/objektiv.jpg"
+app.get('/kontakt', (req, res) => {
+    res.render("_contact", {
+        picture1: "/img/_others/mail.png",
     })
 })
+
+
 
 // Serve the index page
 app.get('/test', (req, res) => {

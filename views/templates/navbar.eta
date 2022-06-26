@@ -14,16 +14,22 @@
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
       
-      <a class="navbar-item" href="/me">
+      <a class="navbar-item" href="/über">
         Über mich
       </a>
 
-      <a class="navbar-item" href="/kamera">
-        Kamera
-      </a>
-
-
       
     </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-primary" href="/kontakt">
+            <strong>Kontakt</strong>
+          </a>
+        </div>
+      </div>
+    </div>
+
   </div>
 </nav>
