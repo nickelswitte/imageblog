@@ -280,7 +280,7 @@ app.get('/' + albumRounting + '/:albumName', (req, res) => {
 
     // console.log(dataRender);
 
-    res.render("_album", dataRender);
+    res.render("_album-grid", dataRender);
 
     
 

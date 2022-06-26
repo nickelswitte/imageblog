@@ -1,0 +1,54 @@
+
+
+<div class="columns">
+    <div class="column">
+        <div class="block">
+            <div class="card">
+                <div class="card-image">
+                    <figure class="image">
+                        <a href="<%= it.image_1_full %>">
+                            <img src="<%= it.image_1_thumb %>" alt="Placeholder image">
+                        </a>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="column">
+        <div class="block">
+            <div class="card">
+                <div class="card-image">
+                    <figure class="image">
+                        <% if (typeof it.image_2_full !== 'undefined' && it.image_2_full != "") { %>
+                            <a href="<%= it.image_2_full %>">
+                                <img src="<%= it.image_2_thumb %>" alt="Placeholder image">
+                            </a>
+                        <% } %>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <div class="column">
+        <div class="block">
+            <div class="card">
+                <div class="card-image">
+                    <figure class="image">
+                        <% if (typeof it.image_3_full !== 'undefined' && it.image_3_full != "" && it.image_3_full != null) { %>
+                            <a href="<%= it.image_3_full %>">
+                                <img src="<%= it.image_3_thumb %>" alt="Placeholder image">
+                            </a>
+                        <% } %>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+</div>

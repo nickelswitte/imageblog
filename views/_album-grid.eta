@@ -1,0 +1,67 @@
+
+<% layout('./basic', it) %>
+
+<div class="columns">
+    <div class="column">
+
+        <div class="block">
+
+            <% if (typeof it.description !== 'undefined' && it.description != "") { %>
+                <hr>
+                <p><%= it.description %></p>
+            <% } %>
+            
+        </div>
+
+        <!-- First column -->
+        <% // console.log(it.imageNames[0])%>
+
+        <% 
+        let i = 0;
+        %>
+
+        <% while (i < it.images.full.length) { 
+
+            if ((it.images.full.length - i) == 1) { %>
+
+                <%~ includeFile('./imageCards/cards-three-squared', {
+                    image_1_full: it.pathPrefix + it.images.full[i],
+                    image_1_thumb: it.pathPrefix + it.images.thumb[i],
+                    image_2_full: null,
+                    image_2_thumb: null,
+                    image_3_full: null,
+                    image_3_thumb: null
+                }); %>
+                
+            <% } else if ((it.images.full.length - i) == 2) { %>
+        
+                <%~ includeFile('./imageCards/cards-three-squared', {
+                    image_1_full: it.pathPrefix + it.images.full[i],
+                    image_1_thumb: it.pathPrefix + it.images.thumb[i],
+                    image_2_full: it.pathPrefix + it.images.full[i + 1],
+                    image_2_thumb: it.pathPrefix + it.images.thumb[i + 1],
+                    image_3_full: null,
+                    image_3_thumb: null
+                }); %>
+
+            <% } else { %>
+
+                <%~ includeFile('./imageCards/cards-three-squared', {
+                    image_1_full: it.pathPrefix + it.images.full[i],
+                    image_1_thumb: it.pathPrefix + it.images.thumb[i],
+                    image_2_full: it.pathPrefix + it.images.full[i + 1],
+                    image_2_thumb: it.pathPrefix + it.images.thumb[i + 1],
+                    image_3_full: it.pathPrefix + it.images.full[i + 2],
+                    image_3_thumb: it.pathPrefix + it.images.thumb[i + 2]
+                }); %>
+
+            <%
+            }
+
+            i += 3;
+
+        
+        } %>
+
+    </div>
+</div>
