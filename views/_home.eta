@@ -8,7 +8,7 @@
 
     <p>"Now for Mr. Breckinridge," he continued, buttoning up his coat as we came out into the frosty air. "Remember, Watson that though we have so homely a thing as a goose at one end of this chain, we have at the other a man who will certainly get seven years' penal servitude unless we can establish his innocence. It is possible that our inquiry may but confirm his guilt; but, in any case, we have a line of investigation which has been missed by the police, and which a singular chance has placed in our hands. Let us follow it out to the bitter end. Faces to the south, then, and quick march!"</p>
 
-    <hr>
+    
 
 </div>
 
@@ -29,7 +29,7 @@
                 thumbnail: it.albumsPathPrefix + it.albums[i].name + '/prev/' + it.albums[i].metadata.thumbnail
             }); %>
 
-            <% i += 2; %>
+            <% i += 3; %>
 
         <% } %>
 
@@ -49,7 +49,26 @@
                 thumbnail: it.albumsPathPrefix + it.albums[j].name + '/prev/' + it.albums[j].metadata.thumbnail
             }); %>
 
-            <% j += 2; %>
+            <% j += 3; %>
+
+        <% } %>
+    </div>
+    <div class="column">
+
+        <% 
+        let k = 2;
+        %>
+
+        <% while (j < it.albums.length) { %>
+            
+            <%~ includeFile('./templates/albumPreview', { 
+                albumTitle: it.albums[j].metadata.title,
+                albumSubtitle: it.albums[j].metadata.subtitle,
+                href: '/' + it.albumRouting + '/' + it.albums[j].name,
+                thumbnail: it.albumsPathPrefix + it.albums[j].name + '/prev/' + it.albums[j].metadata.thumbnail
+            }); %>
+
+            <% k += 3; %>
 
         <% } %>
     </div>
