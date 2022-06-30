@@ -1,12 +1,14 @@
 services:
   imageblog:
     build: .
+    container_name: imageblog
     volumes:
       - .:/usr/src/app
     expose:
       - 80
     environment:
-      VIRTUAL_HOST: xn--berblendet-8db.de, überblendet.de, www.überblendet.de, www.xn--berblendet-8db.de
+      VIRTUAL_HOST: xn--berblendet-8db.de, www.xn--berblendet-8db.de
+      LETSENCRYPT_HOST: xn--berblendet-8db.de, www.xn--berblendet-8db.de
 
 networks:
   default:
