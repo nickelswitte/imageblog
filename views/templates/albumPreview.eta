@@ -1,7 +1,7 @@
 <div class="block">
     <div class="card">
         <a href='<%= it.href %>'>
-            <div class="card-image">
+            <div class="card-image album-wrapper">
             
                 
                 <figure class="image">
