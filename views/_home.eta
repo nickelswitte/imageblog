@@ -59,13 +59,13 @@
         let k = 2;
         %>
 
-        <% while (j < it.albums.length) { %>
+        <% while (k < it.albums.length) { %>
             
             <%~ includeFile('./templates/albumPreview', { 
-                albumTitle: it.albums[j].metadata.title,
-                albumSubtitle: it.albums[j].metadata.subtitle,
-                href: '/' + it.albumRouting + '/' + it.albums[j].name,
-                thumbnail: it.albumsPathPrefix + it.albums[j].name + '/prev/' + it.albums[j].metadata.thumbnail
+                albumTitle: it.albums[k].metadata.title,
+                albumSubtitle: it.albums[k].metadata.subtitle,
+                href: '/' + it.albumRouting + '/' + it.albums[k].name,
+                thumbnail: it.albumsPathPrefix + it.albums[k].name + '/prev/' + it.albums[k].metadata.thumbnail
             }); %>
 
             <% k += 3; %>
