@@ -215,7 +215,7 @@ app.get('/', (req, res) => {
 // Create a callback function for the about page
 var aboutRouting = function (req, res) {
     res.render("_about", {
-        profilePicturePath: "/img/_others/IMG_00034.jpg"
+        profilePicturePath: "/img/_others/ueber-mich.jpeg"
     })
 }
 
