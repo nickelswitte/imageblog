@@ -4,96 +4,100 @@
 
 <div class="content">
 
-    <h1>Hier könnte ein Impressum stehen</h1>
+    <h1>Impressum</h1>
 
-    <p>Lorem ipsum<sup><a>[1]</a></sup> dolor sit amet, consectetur adipiscing elit. Nulla accumsan, metus ultrices eleifend gravida, nulla nunc varius lectus, nec rutrum justo nibh eu lectus. Ut vulputate semper dui. Fusce erat odio, sollicitudin vel erat vel, interdum mattis neque. Sub<sub>script</sub> works as well!</p>
-    <h2>Second level</h2>
-    <p>Curabitur accumsan turpis pharetra <strong>augue tincidunt</strong> blandit. Quisque condimentum maximus mi, sit amet commodo arcu rutrum id. Proin pretium urna vel cursus venenatis. Suspendisse potenti. Etiam mattis sem rhoncus lacus dapibus facilisis. Donec at dignissim dui. Ut et neque nisl.</p>
+    <p>
+        <strong>überblendet.de</strong><br>
+        Copyright 07/2022
+        <br><br>
+        <strong>Kontakt:</strong><br>
+        Matthies Witte<br>
+        hallo (ät) überblendet.de
+    </p>
+
+    <h2>Datenschutzerklärung</h2>
+    <p>Wir sind uns darüber bewusst, dass Ihnen der Schutz Ihrer Privatsphäre bei der Benutzung unserer Websites ein wichtiges Anliegen ist. Wir nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Deshalb möchten wir, dass Sie wissen, wann wir welche Daten speichern und wie wir sie verwenden. Wir möchten Sie deshalb mit dieser Datenschutzerklärung über unsere Maßnahmen zum Datenschutz in Kenntnis setzen.
+    </p>
+
+    <h3>ERHEBUNG PERSONENBEZOGENER DATEN</h3>
+    <p>Im Folgenden informieren wir über die Erhebung personenbezogener Daten bei Nutzung unserer Website. Personenbezogene Daten sind alle Daten, die direkt oder indirekt auf Sie persönlich beziehbar sind, z. B. Name, Adresse, E-Mail-Adressen, Nutzerverhalten. Bei Ihrer Kontaktaufnahme mit uns per E-Mail oder über ein Kontaktformular werden die von Ihnen mitgeteilten Daten (Ihre E-Mail-Adresse, ggf. Ihr Name und Ihre Telefonnummer) von uns gespeichert, um Ihre Fragen zu beantworten. Die in diesem Zusammenhang anfallenden Daten löschen wir, nachdem die Speicherung nicht mehr erforderlich ist. Bei der bloß informatorischen Nutzung der Website, also wenn Sie sich nicht registrieren oder uns anderweitig Informationen übermitteln, werden nur die Daten erhoben, die Ihr Browser an den von uns genutzten Server übermittelt. Wenn Sie unsere Website betrachten möchten, werden die folgenden Daten erhoben, die für uns technisch erforderlich sind, um Ihnen unsere Website anzuzeigen und die Stabilität und Sicherheit zu gewährleisten (Rechtsgrundlage ist Art. 6 Abs. 1 S. 1 lit. f DS-GVO):</p>
+
     <ul>
-        <li>In fermentum leo eu lectus mollis, quis dictum mi aliquet.</li>
-        <li>Morbi eu nulla lobortis, lobortis est in, fringilla felis.</li>
-        <li>Aliquam nec felis in sapien venenatis viverra fermentum nec lectus.</li>
-        <li>Ut non enim metus.</li>
+        <li>IP-Adresse</li>
+        <li>Datum und Uhrzeit der Anfrage</li>
+        <li>Zeitzonendifferenz zur Greenwich Mean Time (GMT)</li>
+        <li>Inhalt der Anforderung (konkrete Seite)</li>
+        <li>Zugriffsstatus/HTTP-Statuscode</li>
+        <li>jeweils übertragene Datenmenge</li>
+        <li>Website, von der die Anforderung kommt</li>
+        <li>Browser</li>
+        <li>Betriebssystem und dessen Oberfläche</li>
+        <li>Sprache und Version der Browsersoftware.</li>
     </ul>
-    <h3>Third level</h3>
-    <p>Quisque ante lacus, malesuada ac auctor vitae, congue <a href="#">non ante</a>. Phasellus lacus ex, semper ac tortor nec, fringilla condimentum orci. Fusce eu rutrum tellus.</p>
+
+    <h3>VERANTWORTLICHER</h3>
+    <p>Den Verantwortlicher gem. Art. 4 Abs. 7 EU-Datenschutz-Grundverordnung (DS-GVO) entnehmen Sie bitte dem Impressum.</p>
+
+    <h3>RECHTSGRUNDLAGEN DER VERARBEITUNG</h3>
+    <p>Wir verarbeiten Daten gemäß DS-GVO Art. 6 Abs.1 lit. a) b) c) f). Das bedeutet, dass wir personenbezogene Daten nur verarbeiten, wenn eine Einwilligung vorliegt (lit. a), soweit zur Erfüllung eines Vertrages oder vorvertraglicher Maßnahmen erforderlich (lit. b), wir rechtlich dazu verpflichtet sind (lit. c) oder wir ein berechtigtes Interesse an der Verarbeitung haben (lit. f).</p>
+
+    <h3>VERWENDUNGSZWECKE</h3>
+    <p>Die von Ihnen erfassten persönlichen Daten werden wir nur dazu verwenden, Ihnen die gewünschten Produkte oder Dienstleistungen bereitzustellen, oder aber zu anderen Zwecken, für die Sie Ihre Einwilligung erteilt haben, sofern keine anderslautenden gesetzlichen Verpflichtungen bestehen.</p>
+
+    <h3>BETROFFENENRECHTE</h3>
+    <p>Sie haben gegenüber uns folgende Rechte hinsichtlich der Sie betreffenden personenbezogenen Daten:</p>
+
+    <ul>
+        <li>Recht auf Auskunft,</li>
+        <li>Recht auf Berichtigung oder Löschung,</li>
+        <li>Recht auf Einschränkung der Verarbeitung,</li>
+        <li>Recht auf Widerspruch gegen die Verarbeitung,</li>
+        <li>Recht auf Datenübertragbarkeit.</li>
+    </ul>
+    
+    <p>
+        Sie haben zudem das Recht, sich bei einer Datenschutz-Aufsichtsbehörde über die Verarbeitung Ihrer personenbezogenen Daten durch uns zu beschweren.
+    </p>
+
+    <h3>RECHT AUF WIDERRUF ODER WIDERSPRUCH GEGEN DIE VERARBEITUNG IHRER DATEN</h3>
+    <p>Falls Sie eine Einwilligung zur Verarbeitung Ihrer Daten erteilt haben, können Sie diese jederzeit widerrufen. Ein solcher Widerruf beeinflusst die Zulässigkeit der Verarbeitung Ihrer personenbezogenen Daten, nachdem Sie ihn gegenüber uns ausgesprochen haben.</p>
+
+    <h3>AUFBEWAHRUNG VON DATEN</h3>
+    <p>Wir speichern personenbezogene Daten so lange, wie es nötig ist, um eine Dienstleistung auszuführen, die Sie gewünscht oder zu der Sie Ihre Einwilligung erteilt haben, sofern keine anderslautenden gesetzlichen Verpflichtungen bestehen wie zum Beispiel bei laufenden Gerichtsverfahren.</p>
+
+    <h3>EINSATZ VON COOKIES</h3>
+    <p>Zusätzlich zu den zuvor genannten Daten werden bei Ihrer Nutzung unserer Website Cookies auf Ihrem Rechner gespeichert. Bei Cookies handelt es sich um kleine Textdateien, die auf Ihrer Festplatte dem von Ihnen verwendeten Browser zugeordnet gespeichert werden und durch welche der Stelle, die den Cookie setzt (hier durch uns), bestimmte Informationen zufließen. Cookies können keine Programme ausführen oder Viren auf Ihren Computer übertragen. Sie dienen dazu, das Internetangebot insgesamt nutzerfreundlicher und effektiver zu machen.</p>
+
     <ol>
-        <li>Donec blandit a lorem id convallis.</li>
-        <li>Cras gravida arcu at diam gravida gravida.</li>
-        <li>Integer in volutpat libero.</li>
-        <li>Donec a diam tellus.</li>
-        <li>Aenean nec tortor orci.</li>
-        <li>Quisque aliquam cursus urna, non bibendum massa viverra eget.</li>
-        <li>Vivamus maximus ultricies pulvinar.</li>
+        <li>Diese Website nutzt folgende Arten von Cookies, deren Umfang und Funktionsweise im Folgenden erläutert werden:</li>
+        <li>Transiente Cookies (dazu b)</li>
+        <li>Persistente Cookies (dazu c).</li>
+        <li>Transiente Cookies werden automatisiert gelöscht, wenn Sie den Browser schließen. Dazu zählen insbesondere die Session-Cookies. Diese speichern eine sogenannte Session-ID, mit welcher sich verschiedene Anfragen Ihres Browsers der gemeinsamen Sitzung zuordnen lassen. Dadurch kann Ihr Rechner wiedererkannt werden, wenn Sie auf unsere Website zurückkehren. Die Session-Cookies werden gelöscht, wenn Sie sich ausloggen oder den Browser schließen.</li>
+        <li>Persistente Cookies werden automatisiert nach einer vorgegebenen Dauer gelöscht, die sich je nach Cookie unterscheiden kann. Sie können die Cookies in den Sicherheitseinstellungen Ihres Browsers jederzeit löschen.</li>
+        <li>Sie können Ihre Browser-Einstellung entsprechend Ihren Wünschen konfigurieren und z. B. die Annahme von Third-Party-Cookies oder allen Cookies ablehnen. Wir weisen Sie darauf hin, dass Sie eventuell nicht alle Funktionen dieser Website nutzen können.</li>
     </ol>
-    <blockquote>Ut venenatis, nisl scelerisque sollicitudin fermentum, quam libero hendrerit ipsum, ut blandit est tellus sit amet turpis.</blockquote>
-    <p>Quisque at semper enim, eu hendrerit odio. Etiam auctor nisl et <em>justo sodales</em> elementum. Maecenas ultrices lacus quis neque consectetur, et lobortis nisi molestie.</p>
-    <p>Sed sagittis enim ac tortor maximus rutrum. Nulla facilisi. Donec mattis vulputate risus in luctus. Maecenas vestibulum interdum commodo.</p>
-    <dl>
-        <dt>Web</dt>
-        <dd>The part of the Internet that contains websites and web pages</dd>
-        <dt>HTML</dt>
-        <dd>A markup language for creating web pages</dd>
-        <dt>CSS</dt>
-        <dd>A technology to make HTML look better</dd>
-    </dl>
-    <p>Suspendisse egestas sapien non felis placerat elementum. Morbi tortor nisl, suscipit sed mi sit amet, mollis malesuada nulla. Nulla facilisi. Nullam ac erat ante.</p>
-    <h4>Fourth level</h4>
-    <p>Nulla efficitur eleifend nisi, sit amet bibendum sapien fringilla ac. Mauris euismod metus a tellus laoreet, at elementum ex efficitur.</p>
-    <pre>
-    &lt;!DOCTYPE html&gt;
-    &lt;html&gt;
-    &lt;head&gt;
-        &lt;title&gt;Hello World&lt;/title&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra nec nulla vitae mollis.&lt;/p&gt;
-    &lt;/body&gt;
-    &lt;/html&gt;
-    </pre>
-    <p>Maecenas eleifend sollicitudin dui, faucibus sollicitudin augue cursus non. Ut finibus eleifend arcu ut vehicula. Mauris eu est maximus est porta condimentum in eu justo. Nulla id iaculis sapien.</p>
-    <table>
-        <thead>
-        <tr>
-            <th>One</th>
-            <th>Two</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Three</td>
-            <td>Four</td>
-        </tr>
-        <tr>
-            <td>Five</td>
-            <td>Six</td>
-        </tr>
-        <tr>
-            <td>Seven</td>
-            <td>Eight</td>
-        </tr>
-        <tr>
-            <td>Nine</td>
-            <td>Ten</td>
-        </tr>
-        <tr>
-            <td>Eleven</td>
-            <td>Twelve</td>
-        </tr>
-        </tbody>
-    </table>
-    <p>Phasellus porttitor enim id metus volutpat ultricies. Ut nisi nunc, blandit sed dapibus at, vestibulum in felis. Etiam iaculis lorem ac nibh bibendum rhoncus. Nam interdum efficitur ligula sit amet ullamcorper. Etiam tristique, leo vitae porta faucibus, mi lacus laoreet metus, at cursus leo est vel tellus. Sed ac posuere est. Nunc ultricies nunc neque, vitae ultricies ex sodales quis. Aliquam eu nibh in libero accumsan pulvinar. Nullam nec nisl placerat, pretium metus vel, euismod ipsum. Proin tempor cursus nisl vel condimentum. Nam pharetra varius metus non pellentesque.</p>
-    <h5>Fifth level</h5>
-    <p>Aliquam sagittis rhoncus vulputate. Cras non luctus sem, sed tincidunt ligula. Vestibulum at nunc elit. Praesent aliquet ligula mi, in luctus elit volutpat porta. Phasellus molestie diam vel nisi sodales, a eleifend augue laoreet. Sed nec eleifend justo. Nam et sollicitudin odio.</p>
-    <figure>
-        <img src="https://bulma.io/images/placeholders/256x256.png">
-        <img src="https://bulma.io/images/placeholders/256x256.png">
-        <figcaption>
-        Figure 1: Some beautiful placeholders
-        </figcaption>
-    </figure>
-    <h6>Sixth level</h6>
-    <p>Cras in nibh lacinia, venenatis nisi et, auctor urna. Donec pulvinar lacus sed diam dignissim, ut eleifend eros accumsan. Phasellus non tortor eros. Ut sed rutrum lacus. Etiam purus nunc, scelerisque quis enim vitae, malesuada ultrices turpis. Nunc vitae maximus purus, nec consectetur dui. Suspendisse euismod, elit vel rutrum commodo, ipsum tortor maximus dui, sed varius sapien odio vitae est. Etiam at cursus metus.</p>
+
+    <h3>WEITERE FUNKTIONEN UND ANGEBOTE UNSERER WEBSITE</h3>
+    <p>Neben der rein informatorischen Nutzung unserer Website bieten wir verschiedene Leistungen an, die Sie bei Interesse nutzen können. Dazu müssen Sie in der Regel weitere personenbezogene Daten angeben, die wir zur Erbringung der jeweiligen Leistung nutzen und für die die zuvor genannten Grundsätze zur Datenverarbeitung gelten. Teilweise bedienen wir uns zur Verarbeitung Ihrer Daten externer Dienstleister. Diese wurden von uns sorgfältig ausgewählt und beauftragt, sind an unsere Weisungen gebunden und werden regelmäßig kontrolliert. Weiterhin können wir Ihre personenbezogenen Daten an Dritte weitergeben, wenn Aktionsteilnahmen, Gewinnspiele, Vertragsabschlüsse oder ähnliche Leistungen von uns gemeinsam mit Partnern angeboten werden. Nähere Informationen hierzu erhalten Sie bei Angabe Ihrer personenbezogenen Daten oder untenstehend in der Beschreibung des Angebotes. Soweit unsere Dienstleister oder Partner ihren Sitz in einem Staat außerhalb des Europäischen Wirtschaftsraumen (EWR) haben, informieren wir Sie über die Folgen dieses Umstands in der Beschreibung des Angebotes.
+    </p>
+
+    <h3>SICHERHEIT</h3>
+    <p>Wir setzen technische und organisatorische Sicherheitsmaßnahmen ein, um Ihre zur Verfügung gestellten Daten durch zufällige oder vorsätzliche Manipulation, Verlust, Zerstörung oder Zugriff unberechtigter Personen zu schützen. Im Falle der Erhebung und Verarbeitung persönlicher Daten werden die Informationen in verschlüsselter Form übertragen, um einem Missbrauch der Daten durch Dritte vorzubeugen. Unsere Sicherungsmaßnahmen werden entsprechend der technologischen Entwicklung fortlaufend überarbeitet.
+    </p>
+
+    <h3>ANPASSUNGEN</h3>
+    <p>Die ständige Entwicklung des Internets macht von Zeit zu Zeit Anpassungen unserer Datenschutzerklärung erforderlich. Wir behalten uns vor, jederzeit entsprechende Änderungen vorzunehmen.
+    </p>
+
+    <h3>NUTZUNGSSTATISTIK</h3>
+    <p>Beim Besuch unserer Seite wird von uns anonymisiert erfasst, auf welchem Weg die Besucher zu unserer Webseite gekommen sind und wie viele Nutzer die Seite aufgerufen haben (Suchmaschine, Verlinkung, direkte Eingabe oder Werbemaßnahmen). Die Daten werden nicht dazu genutzt, einzelne Besucher zu identifizieren, sondern ausschließlich zur Übermittlung quantitativer Größen. Die Statistik kann nicht dazu genutzt werden, ihr Verhalten auf anderen Webseiten nachzuvollziehen. Die Daten werden nicht mit anderen Diensten verknüpft. Wenn Sie das Setzen von Cookies in Ihrem Browser deaktiviert haben, werden Ihre Besuche nicht erfasst.
+    </p>
+
+    <h3>INHALTE DRITTER AUF DER WEBSEITE</h3>
+    <p>Unser Internetauftritt integriert Inhalte anderer Anbieter. Dies können reine Content-Elemente (z.B. Nachrichten, Neuigkeiten) aber auch Widgets (Funktionen wie z.B. Wetternachrichten) oder z.B. Schriften und technische Bibliotheken sein. Aus technischen Gründen erfolgt dies, indem diese Inhalte vom Browser von anderen Servern geladen werden. In diesem Zusammenhang wird die aktuell von Ihrem Browser verwendete IP und der verwendete Browser des anfragenden Systems übermittelt. Bitte beachten Sie diesbezüglich die jeweiligen Datenschutzerklärungen der Drittanbieter.
+    </p>
+
+    
     
 
 </div>
