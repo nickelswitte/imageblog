@@ -17,7 +17,7 @@
 
     
     <div class="column">
-        <% if (typeof it.image_2_full !== 'undefined' && it.image_2_full != "" && it.image_3_full != null) { %>
+        <% if (typeof it.image_2_full !== 'undefined' && it.image_2_full != "" && it.image_2_full != null) { %>
             <div class="block">
                 <div class="card">
                     <div class="card-image">
