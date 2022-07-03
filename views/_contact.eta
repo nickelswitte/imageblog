@@ -17,7 +17,7 @@
         <div class="field">
             <label class="label">Name</label>
             <div class="control">
-                <input class="input" type="text" placeholder="Dein Dame">
+                <input class="input" type="text" placeholder="Dein Name">
             </div>
         </div>
 
