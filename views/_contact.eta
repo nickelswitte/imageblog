@@ -14,49 +14,51 @@
 
         </div>
 
-        <div class="field">
-            <label class="label">Name</label>
-            <div class="control">
-                <input class="input" type="text" placeholder="Dein Name">
-            </div>
-        </div>
+        <form action="/contact-processor" method="POST">    
 
-        <div class="field">
-            <label class="label">E-Mail</label>
-            <div class="control">
-                <input class="input" type="email" placeholder="Deine E-Mail Adresse für die Antwort" value="">
+            <div class="field">
+                <label class="label">Name</label>
+                <div class="control">
+                    <input class="input" name="name" type="text" placeholder="Dein Name">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">E-Mail</label>
+                <div class="control">
+                    <input class="input" name="email" type="email" placeholder="Deine E-Mail Adresse für die Antwort" value="">
+                    
+                    
+                </div>
                 
+            </div>
+
+            
+            <div class="field">
+                <label class="label">Nachricht</label>
+                <div class="control">
+                    <textarea name="msg" class="textarea" placeholder="Schreibe hier die Anfrage rein"></textarea>
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <label class="checkbox">
+                    <input type="checkbox">
+                        Ich stimme den <a href="/impressum">Bedingungen</a> zu.
+                    </label>
+                    <p class="help is-danger">Dieses Formular ist aktuell noch in Arbeit und funktioniert noch nicht vollständig</p>
+                </div>
+            </div>
+
+
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-primary">Absenden</button>
+                </div>
                 
             </div>
-            
-        </div>
-
-        
-        <div class="field">
-            <label class="label">Nachricht</label>
-            <div class="control">
-                <textarea class="textarea" placeholder="Schreibe hier die Anfrage rein"></textarea>
-            </div>
-        </div>
-
-        <div class="field">
-            <div class="control">
-                <label class="checkbox">
-                <input type="checkbox">
-                    Ich stimme den <a href="/impressum">Bedingungen</a> zu.
-                </label>
-                <p class="help is-danger">Dieses Formular ist aktuell noch in Arbeit und funktioniert noch nicht vollständig</p>
-            </div>
-        </div>
-
-
-        <div class="field is-grouped">
-            <div class="control">
-                <button class="button is-primary">Absenden</button>
-            </div>
-            
-        </div>
-        
+        </form>
         
     </div>
 

@@ -21,7 +21,9 @@
   "dependencies": {
     "@creativebulma/bulma-divider": "^1.1.0",
     "@fancyapps/ui": "^4.0.9",
+    "body-parser": "^1.19.0",
     "bulma": "^0.9.3",
+    "emailjs": "^4.0.0",
     "eta": "^1.12.3",
     "express": "^4.17.1",
     "markdown-it": "^12.3.2",

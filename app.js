@@ -8,12 +8,23 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 // import { Fancybox } from "@fancyapps/ui";
 import pkg from "@fancyapps/ui";
+// Import body parser for post form data
+import bodyParser from 'body-parser';
+import { SMTPClient } from 'emailjs';
 const { Fancybox } = pkg;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 var md = new MarkdownIt().use(taskLists);
+
+const client = new SMTPClient({
+	user: 'noreply@xn--berblendet-8db.de',
+	password: 'gDf9nwo@yhCJ5%WxNMaU',
+	host: 'smtp.strato.de',
+	ssl: true,
+});
+
 
 
 const app = express();
@@ -32,14 +43,18 @@ app.engine("eta", eta.renderFile);
 app.set("view engine", "eta");
 app.set('views', './views');
 
+// Initiate body parser, which is used to parse post form data
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
+
+// Include static files
 app.use(express.json());
 app.use(express.static('node_modules/bulma/css'));
 app.use(express.static('node_modules/@creativebulma/bulma-divider/dist'));
 app.use(express.static('node_modules/medium-zoom/dist'));
 app.use(express.static('node_modules/@fancyapps/ui/dist'));
 app.use(express.static('public'));
-// Include static files of bulma
 
 /**
  * Function to initially do some tasks
@@ -247,8 +262,58 @@ app.get('/test', (req, res) => {
     res.render("_test", {});
 })
 
+/**
+ * Will take the post request with the form data and launch a mail
+ */
+app.post('/contact-processor', (req, res) => {
+    
+    // console.log(req.body);
 
+    let mailText = '<b>Sender</b>: ' + req.body.name + '<br>' + 
+                   '<b>Message</b>: ' + req.body.msg + '<br>' + 
+                   '<b>Mail</b>: ' + req.body.email + '<br>';
+    
+    
+    // sending to hallo@überblendet.de
+    client.send(
+        {
+            text: 'Message to be overwritten by html',
+            from: 'überblendet.de <noreply@xn--berblendet-8db.de>',
+            to: 'überblendet.de <hallo@xn--berblendet-8db.de>',
+            cc: 'Nickels <nickels.witte@posteo.de>',
+            subject: 'überblendet.de: Neue Kontaktanfrage von ' + req.body.name,
+            attachment: [
+                { data: '<html>' + mailText + '</html>', alternative: true },
+            ],
+        },
+        (error, message) => {
+            if (error) {
+                res.render("_modal", {
+                    modal: "Es gab ein Problem mit der Kontaktanfrage. Versuche es bitte erneut. ❌"
+                });
+                // res.send('Es gab ein Problem mit der Kontaktanfrage. Versuche es bitte erneut.');
+                console.log(error);
+                return;
+            }
 
+            if (message) { 
+                console.log('The message was successful!');
+            }
+        }
+    );
+
+    
+    //res.send('Die Kontaktanfrage wurde erfolgreich versendet :)');
+    res.render("_modal", {
+        modal: "Die Kontaktanfrage wurde erfolgreich versendet! 📮"
+    });
+});
+
+app.get('/modal', (req, res) => {
+    res.render("_modal", {
+        modal: "This is a modal!"
+    });
+});
 
 
 /**
