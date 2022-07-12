@@ -18,17 +18,14 @@ const __dirname = path.dirname(__filename);
 
 var md = new MarkdownIt().use(taskLists);
 
-const client = new SMTPClient({
-	user: 'noreply@xn--berblendet-8db.de',
-	password: 'gDf9nwo@yhCJ5%WxNMaU',
-	host: 'smtp.strato.de',
-	ssl: true,
-});
+let smtpClient;
 
 
 
 const app = express();
 const port = 80;
+
+const mailTimeOut = 10000;
 
 
 const albumRounting = 'album';
@@ -37,6 +34,10 @@ const albumFolderForLocalUse = '/public/img/albums/';
 
 let albums = [];
 let albumsInfo = [];
+
+// Variables to prevent mail spam
+let mailTextLast = {};
+let mailTextLastTimestamp = 0;
 
 // Enable render engine
 app.engine("eta", eta.renderFile);
@@ -61,8 +62,41 @@ app.use(express.static('public'));
  */
 function init() {
 
+    // Scan albums directory
     collectAlbumsInfo();
-       
+    
+    
+    // Collect smtp info
+    readSmtp();
+}
+
+async function readSmtp() {
+    // Read smtp file
+    try {
+        // Read index.json file
+        let data = await fs.promises.readFile('./smtp', 'utf8');
+        let json = JSON.parse(data);
+
+        // Initialize smtp client with json data
+        smtpClient = new SMTPClient({
+            user: json.user,
+            password: json.pass,
+            host: json.host,
+            ssl: true,
+        });
+
+        console.log('Successfully read smtp file and initialized smtp client.');
+        
+    } catch (err) {
+
+        if (err.code === 'ENOENT') {
+            console.error('Smtp file for email service not found!');
+        } else {
+            console.log("There has been an error while reading the smtp file");
+            console.error(err);
+        }
+
+    }
 }
 
 
@@ -263,50 +297,57 @@ app.get('/test', (req, res) => {
 })
 
 /**
- * Will take the post request with the form data and launch a mail
+ * Will take the post request with the form data, check for spam and 
+ * attempt to launch a mail
  */
 app.post('/contact-processor', (req, res) => {
     
-    // console.log(req.body);
+    // Check if the timeout is exceeded
+    if (Date.now() - mailTextLastTimestamp < mailTimeOut) {
+        // We need to wait a bit more
+        res.render("_modal", {
+            modal: "Es gab ein Problem mit der Kontaktanfrage. Gehe zurück und versuche es bitte nach einer kurzen Pause erneut. ❌"
+        });
+        console.log('A mail has not been launched due to the mail sending time out: ' + (Date.now() - mailTextLastTimestamp) / 1000 + 's left');
+        return;
+    } else {
+        // The time was exceeded, everything okay
+        // Save timestamp for next time
+        mailTextLastTimestamp = Date.now();
 
-    let mailText = '<b>Sender</b>: ' + req.body.name + '<br>' + 
-                   '<b>Message</b>: ' + req.body.msg + '<br>' + 
-                   '<b>Mail</b>: ' + req.body.email + '<br>';
+        // Continue to next check
+    }
     
-    
-    // sending to hallo@überblendet.de
-    client.send(
-        {
-            text: 'Message to be overwritten by html',
-            from: 'überblendet.de <noreply@xn--berblendet-8db.de>',
-            to: 'überblendet.de <hallo@xn--berblendet-8db.de>',
-            cc: 'Nickels <nickels.witte@posteo.de>',
-            subject: 'überblendet.de: Neue Kontaktanfrage von ' + req.body.name,
-            attachment: [
-                { data: '<html>' + mailText + '</html>', alternative: true },
-            ],
-        },
-        (error, message) => {
-            if (error) {
+    // Now check if this exact message has already been sent the last time
+    if (JSON.stringify(mailTextLast) == JSON.stringify(req.body)) {
+        // Just do nothing, no further mail is launched
+        console.log('A mail has not been launched due to the exact message launch last time');
+        res.render("_modal", {
+            modal: "Die Kontaktanfrage wurde erfolgreich versendet! 📮"
+        });
+    } else {
+        // Everything okay, continue
+        // Launch mail asynchronously
+        let promise = sendMail(req.body.name, req.body.mail, req.body.msg)
+        
+        promise.then(
+            resolve => {
+                // When everything worked out well, save text
+                mailTextLast = req.body;
+                console.log('A mail has been launched successfully because of the contact form');
                 res.render("_modal", {
-                    modal: "Es gab ein Problem mit der Kontaktanfrage. Versuche es bitte erneut. ❌"
+                    modal: "Die Kontaktanfrage wurde erfolgreich versendet! 📮"
                 });
-                // res.send('Es gab ein Problem mit der Kontaktanfrage. Versuche es bitte erneut.');
-                console.log(error);
-                return;
+            },
+            reject => {
+                // There was an smtp issue
+                res.render("_modal", {
+                    modal: "Es gab ein Problem auf unserer Seite mit der Kontaktanfrage. Gehe zurück und versuche es bitte nach einiger Zeit erneut. ❌"
+                });
+                console.log('A mail has not been launched due to a smtp mail error');
             }
-
-            if (message) { 
-                console.log('The message was successful!');
-            }
-        }
-    );
-
-    
-    //res.send('Die Kontaktanfrage wurde erfolgreich versendet :)');
-    res.render("_modal", {
-        modal: "Die Kontaktanfrage wurde erfolgreich versendet! 📮"
-    });
+        );
+    }
 });
 
 app.get('/modal', (req, res) => {
@@ -314,6 +355,37 @@ app.get('/modal', (req, res) => {
         modal: "This is a modal!"
     });
 });
+
+/**
+ * Sends a mail
+ */
+async function sendMail(name, mail, message) {
+
+    let mailText = '<b>Sender</b>: ' + name + '<br>' + 
+                   '<b>Mail</b>: ' + mail + '<br>' +
+                   '<b>Message</b>: ' + message + '<br>'; 
+    
+    // sending to hallo@überblendet.de asynchronically
+    try {
+        const message = await smtpClient.sendAsync({
+            text: 'Message to be overwritten by html',
+            from: 'überblendet.de <noreply@xn--berblendet-8db.de>',
+            to: 'überblendet.de <hallo@xn--berblendet-8db.de>',
+            cc: '',
+            subject: 'überblendet.de: Neue Kontaktanfrage von ' + name,
+            attachment: [
+                { data: '<html>' + mailText + '</html>', alternative: true },
+            ],
+        });
+        // console.log(message);
+    } catch (error) {
+        // TODO Await this error
+        // res.send('Es gab ein Problem mit der Kontaktanfrage. Versuche es bitte erneut.');
+        console.log(error);
+        throw error;
+    }
+}
+
 
 
 /**

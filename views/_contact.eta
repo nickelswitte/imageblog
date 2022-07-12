@@ -9,56 +9,75 @@
 
             <h3> Kontakt </h3>
 
-            <p>Ich freue mich natürlich, wenn meine Fotos dir gefallen. Wenn du dir vorstellen könntest, meine tollen Dienste in Anspruch zu nehmen, dann nehme gern hier den Kontakt mit mir auf.</p>
+            <p>Ich freue mich, wenn Dir meine Fotos gefallen. Falls Du daran Interesse hast, meine Dienste in Anspruch zu nehmen, melde Dich gerne.</p>
 
 
         </div>
 
-        <form action="/contact-processor" method="POST">    
+        <div class="notification is-danger is-light block">
+            <button class="delete"></button>
+            Bitte überprüfe die Eingaben, da nicht alles richtig ausgefüllt wurde.
+        </div>
 
-            <div class="field">
-                <label class="label">Name</label>
-                <div class="control">
-                    <input class="input" name="name" type="text" placeholder="Dein Name">
+        <div class="block">
+
+            <form  id="form" action="/contact-processor" method="POST">    
+
+                <div class="field">
+                    <label class="label">Name</label>
+                    <div class="control">
+                        <input id="formName" class="input" name="name" type="text" placeholder="Dein Name">
+                    </div>
                 </div>
-            </div>
 
-            <div class="field">
-                <label class="label">E-Mail</label>
-                <div class="control">
-                    <input class="input" name="email" type="email" placeholder="Deine E-Mail Adresse für die Antwort" value="">
+                <div class="field">
+                    <label class="label">E-Mail</label>
+                    <div class="control">
+                        <input id="formMail" class="input" name="mail" type="email" placeholder="Deine E-Mail Adresse für die Antwort" value="">
+                        <p class="help">Die E-Mail brauchen wir, um dir antworten zu können.</p>
+                        
+                        
+                    </div>
                     
+                </div>
+
+                
+                <div class="field">
+                    <label class="label">Nachricht</label>
+                    <div class="control">
+                        <textarea id="formMsg" name="msg" class="textarea" placeholder="Schreibe hier die Anfrage rein"></textarea>
+                        <p class="help">Schreibe hier deine Anfrage rein.</p>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <label class="checkbox">
+                        <input type="checkbox">
+                            Ich stimme den <a href="/impressum">Bedingungen</a> zu.
+                        </label>
+                        <p class="help is-danger">Dieses Formular ist aktuell noch in Arbeit und funktioniert noch nicht vollständig</p>
+                    </div>
+                </div>
+
+                
+
+                <!-- 
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button id="formbtn" class="button is-primary">Absenden</button>
+                    </div>
                     
                 </div>
-                
-            </div>
+                -->
+            </form>
 
-            
-            <div class="field">
-                <label class="label">Nachricht</label>
-                <div class="control">
-                    <textarea name="msg" class="textarea" placeholder="Schreibe hier die Anfrage rein"></textarea>
-                </div>
-            </div>
+        </div>
 
-            <div class="field">
-                <div class="control">
-                    <label class="checkbox">
-                    <input type="checkbox">
-                        Ich stimme den <a href="/impressum">Bedingungen</a> zu.
-                    </label>
-                    <p class="help is-danger">Dieses Formular ist aktuell noch in Arbeit und funktioniert noch nicht vollständig</p>
-                </div>
-            </div>
+        <!-- <button id="xhrbtn" class="button is-primary">Absenden XHR</button> -->
 
-
-            <div class="field is-grouped">
-                <div class="control">
-                    <button class="button is-primary">Absenden</button>
-                </div>
-                
-            </div>
-        </form>
+        <button id="btn2" class="button is-primary">Absenden</button>
+        
         
     </div>
 
@@ -74,3 +93,24 @@
     </div>
 
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        let btn2 = document.querySelector('#btn2');
+        let form = document.querySelector('#form');
+
+        btn2.addEventListener( 'click', function() {
+
+            let name = document.querySelector('#formName').value;
+            let mail = document.querySelector('#formMail').value;
+            let msg = document.querySelector('#formMsg').value;
+
+            console.log(name + mail + msg);
+            // TODO do an input check here
+
+            //form.submit();
+        });
+
+    });
+
+</script>
