@@ -37,16 +37,12 @@ document.addEventListener('DOMContentLoaded', () => {
         img.setAttribute("id", "zoom-background");
     }
 
-});
+    // TODO Fix this bug
 
-document.addEventListener('DOMContentLoaded', () => {
-    (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
-      const $notification = $delete.parentNode;
-  
-        $delete.addEventListener('click', () => {
-            $notification.parentNode.removeChild($notification);
-        });
-    });
+    // FIXME this needs to be done
+
+    
+
 });
 
 

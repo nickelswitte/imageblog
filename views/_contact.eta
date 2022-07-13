@@ -14,9 +14,9 @@
 
         </div>
 
-        <div class="notification is-danger is-light block">
+        <div class="notification is-danger is-light block" style="display: none;" id="notificationBox">
             <button class="delete"></button>
-            Bitte überprüfe die Eingaben, da nicht alles richtig ausgefüllt wurde.
+            <p id="notificationText"></p>
         </div>
 
         <div class="block">
@@ -53,28 +53,15 @@
                 <div class="field">
                     <div class="control">
                         <label class="checkbox">
-                        <input type="checkbox">
+                            <input id="checkboxTerms" type="checkbox">
                             Ich stimme den <a href="/impressum">Bedingungen</a> zu.
                         </label>
-                        <p class="help is-danger">Dieses Formular ist aktuell noch in Arbeit und funktioniert noch nicht vollständig</p>
                     </div>
                 </div>
 
-                
-
-                <!-- 
-                <div class="field is-grouped">
-                    <div class="control">
-                        <button id="formbtn" class="button is-primary">Absenden</button>
-                    </div>
-                    
-                </div>
-                -->
             </form>
 
         </div>
-
-        <!-- <button id="xhrbtn" class="button is-primary">Absenden XHR</button> -->
 
         <button id="btn2" class="button is-primary">Absenden</button>
         
@@ -96,19 +83,94 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+            const $notification = $delete.parentNode;
+    
+            $delete.addEventListener('click', () => {
+                $notification.style.display = "none";
+            });
+        });
+    });
+
+
+
+    document.addEventListener('DOMContentLoaded', () => {
         let btn2 = document.querySelector('#btn2');
         let form = document.querySelector('#form');
+        let notificationParagraph = document.querySelector('#notificationText');
+        let notificationBox = document.querySelector('#notificationBox');
+
+        
+
 
         btn2.addEventListener( 'click', function() {
 
-            let name = document.querySelector('#formName').value;
-            let mail = document.querySelector('#formMail').value;
-            let msg = document.querySelector('#formMsg').value;
+            let notificationText = "Es scheint, als wenn einige der Angaben fehlerhaft sind.<br><br>";
+            let error = false;
 
-            console.log(name + mail + msg);
-            // TODO do an input check here
+            let nameInput = document.querySelector('#formName');
+            let mailInput = document.querySelector('#formMail');
+            let msgInput = document.querySelector('#formMsg');
+            let checkboxTerms = document.querySelector('#checkboxTerms');
 
-            //form.submit();
+            let name = nameInput.value;
+            let mail = mailInput.value;
+            let msg = msgInput.value;
+
+            if (name == "") {
+                nameInput.classList.add("is-danger");
+                notificationText += " Ein Name wäre hilfreich 😉";
+                error = true;
+            } else {
+                nameInput.classList.remove("is-danger");
+            }
+
+            // Check if mail is present
+            if (mail == "") {
+                mailInput.classList.add("is-danger");
+                notificationText += " Wir brauchen eine Mail-Adresse, damit wir antworten können.";
+                error = true;
+            } else {
+
+                // Check mail validity
+                if (!mail.includes('@') || !mail.includes('.')) {
+                    mailInput.classList.add("is-danger");
+                    notificationText += " Die E-Mail Adresse scheint fehlerhaft zu sein.";
+                    error = true;
+                } else {
+                    mailInput.classList.remove("is-danger");
+                }
+
+            }
+
+            
+
+            if (msg == "") {
+                msgInput.classList.add("is-danger");
+                notificationText += " Hast du eine leere Nachricht verschicken wollen?";
+                error = true;
+            } else {
+                msgInput.classList.remove("is-danger");
+            }
+
+            if (!checkboxTerms.checked) {
+                checkboxTerms.classList.add("is-danger");
+                notificationText += " Wir würden uns freuen, wenn du den Bedingungen zustimmst.";
+                error = true;
+            } else {
+                checkboxTerms.classList.remove("is-danger");
+            }
+
+            if (error) {
+                notificationParagraph.innerHTML = notificationText;
+                notificationBox.style.display = "block";
+
+            } else {
+                // console.log('accepted');
+                // Send the form away!
+                form.submit();
+            }
+
         });
 
     });
