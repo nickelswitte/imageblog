@@ -2,16 +2,16 @@
 <% layout('./basic', it) %>
 
 
-<div class="columns">
+<div class="columns" style="height: 100%">
     <div class="column is-6 is-offset-3">
-        <div class="card"> 
-        <div class="card-content">
-                <div class="content">
-                    <% if (typeof it.modal !== 'undefined' && it.modal != "") { %>
-                        <p><%= it.modal %></p>
-                    <% } %>
-                </div>
-            </div>
+        <% if (typeof it.style !== 'undefined' && it.style != "") { %>
+        <div class="notification <%= it.style %>"> 
+        <% } else { %>
+        <div class="notification"> 
+        <% } %>
+            <% if (typeof it.modal !== 'undefined' && it.modal != "") { %>
+                <p><%= it.modal %></p>
+            <% } %>
         </div>
     </div>
 </div>

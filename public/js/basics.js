@@ -37,10 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
         img.setAttribute("id", "zoom-background");
     }
 
-    // TODO Fix this bug
-
-    // FIXME this needs to be done
-
     
 
 });

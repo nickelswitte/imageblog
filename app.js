@@ -306,7 +306,8 @@ app.post('/contact-processor', (req, res) => {
     if (Date.now() - mailTextLastTimestamp < mailTimeOut) {
         // We need to wait a bit more
         res.render("_modal", {
-            modal: "Es gab ein Problem mit der Kontaktanfrage. Gehe zurück und versuche es bitte nach einer kurzen Pause erneut. ❌"
+            modal: "Es gab ein Problem mit der Kontaktanfrage. Gehe zurück und versuche es bitte nach einer kurzen Pause erneut. ❌",
+            style: "is-danger"
         });
         console.log('A mail has not been launched due to the mail sending time out: ' + (Date.now() - mailTextLastTimestamp) / 1000 + 's left');
         return;
@@ -323,7 +324,8 @@ app.post('/contact-processor', (req, res) => {
         // Just do nothing, no further mail is launched
         console.log('A mail has not been launched due to the exact message launch last time');
         res.render("_modal", {
-            modal: "Die Kontaktanfrage wurde erfolgreich versendet! 📮"
+            modal: "Die Kontaktanfrage wurde erfolgreich versendet! 📮",
+            style: "is-success"
         });
     } else {
         // Everything okay, continue
@@ -336,13 +338,15 @@ app.post('/contact-processor', (req, res) => {
                 mailTextLast = req.body;
                 console.log('A mail has been launched successfully because of the contact form');
                 res.render("_modal", {
-                    modal: "Die Kontaktanfrage wurde erfolgreich versendet! 📮"
+                    modal: "Die Kontaktanfrage wurde erfolgreich versendet! 📮",
+                    style: "is-success"
                 });
             },
             reject => {
                 // There was an smtp issue
                 res.render("_modal", {
-                    modal: "Es gab ein Problem auf unserer Seite mit der Kontaktanfrage. Gehe zurück und versuche es bitte nach einiger Zeit erneut. ❌"
+                    modal: "Es gab ein Problem auf unserer Seite mit der Kontaktanfrage. Gehe zurück und versuche es bitte nach einiger Zeit erneut. ❌",
+                    style: "is-danger"
                 });
                 console.log('A mail has not been launched due to a smtp mail error');
             }
@@ -352,7 +356,8 @@ app.post('/contact-processor', (req, res) => {
 
 app.get('/modal', (req, res) => {
     res.render("_modal", {
-        modal: "This is a modal!"
+        modal: "This is a dangerous modal!",
+        style: "is-success"
     });
 });
 
