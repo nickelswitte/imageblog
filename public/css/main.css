@@ -38,7 +38,7 @@ img {
 
 /* Inserts the logo as a background image */
 .navbar-ue-logo {
-  background: url(/img/logo/ue_long_small.png) no-repeat center center;
+  background: url(/img/logo/logo_long_small.png) no-repeat center center;
   background-size: cover;
   width: 252px;
   margin-right: 20px; 
