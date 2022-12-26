@@ -22,3 +22,6 @@
 <script src="/js/basics.js"></script>
 <script src="/fancybox.umd.js"></script>
 <script src="/js/fancybox.js"></script>
+
+<!-- font awesome -->
+<link href="/css/font-awesome.min.css" rel="stylesheet">

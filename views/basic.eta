@@ -28,6 +28,8 @@
     <!-- Enter the footer -->
     <%~ includeFile('./templates/footer') %>
 
+    <%~ includeFile('./templates/modals') %>
+
 </body>
 
 </html> 

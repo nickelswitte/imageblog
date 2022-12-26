@@ -18,6 +18,10 @@
         Über mich
       </a>
 
+      <a class="navbar-item js-modal-trigger" data-target="modal-private-albums">
+        Persönliche Alben
+      </a>
+
       
     </div>
 
@@ -32,4 +36,5 @@
     </div>
 
   </div>
+
 </nav>

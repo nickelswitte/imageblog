@@ -1,4 +1,4 @@
-
+// Imports
 import express from 'express';
 import * as eta from "eta"
 import fs from "fs";
@@ -6,6 +6,7 @@ import MarkdownIt from 'markdown-it';
 import taskLists from 'markdown-it-task-lists';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { nanoid } from 'nanoid'
 // import { Fancybox } from "@fancyapps/ui";
 import pkg from "@fancyapps/ui";
 // Import body parser for post form data
@@ -16,24 +17,25 @@ const { Fancybox } = pkg;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-var md = new MarkdownIt().use(taskLists);
-
 let smtpClient;
-
-
 
 const app = express();
 const port = 80;
 
 const mailTimeOut = 10000;
 
-
 const albumRounting = 'album';
-const albumFolderForPublicUse = '/img/albums/';
-const albumFolderForLocalUse = '/public/img/albums/';
+const albumPublicFolderForPublicUse = '/img/albums-public/';
+const albumPublicFolderForLocalUse = '/public/img/albums-public/';
 
-let albums = [];
+const albumPrivateRouting = 'download';
+const albumPrivateFolderForPublicUse = '/img/albums-private/';
+const albumPrivateFolderForLocalUse = '/public/img/albums-private/';
+
 let albumsInfo = [];
+let albumsInfoPrivate = [];
+let passwords = "";
+const delimiter = " ";
 
 // Variables to prevent mail spam
 let mailTextLast = {};
@@ -55,6 +57,7 @@ app.use(express.static('node_modules/bulma/css'));
 app.use(express.static('node_modules/@creativebulma/bulma-divider/dist'));
 app.use(express.static('node_modules/medium-zoom/dist'));
 app.use(express.static('node_modules/@fancyapps/ui/dist'));
+app.use(express.static('node_modules/font-awesome'));
 app.use(express.static('public'));
 
 /**
@@ -62,12 +65,21 @@ app.use(express.static('public'));
  */
 function init() {
 
-    // Scan albums directory
-    collectAlbumsInfo();
-    
+    // Scan albums directories
+    (async () => {
+        albumsInfo = await collectAlbumsInfo(albumPublicFolderForLocalUse);
+    })();
+
+    // Scan private album directories
+    (async () => {
+        albumsInfoPrivate = await collectAlbumsInfo(albumPrivateFolderForLocalUse);
+    })();
     
     // Collect smtp info
     readSmtp();
+
+    // Read password files
+    readPasswords();
 }
 
 async function readSmtp() {
@@ -101,24 +113,27 @@ async function readSmtp() {
 
 
 
+
 /**
  * Reads all album index.json and collects the information in one variable
  */
-async function collectAlbumsInfo() {
+async function collectAlbumsInfo(albumPath) {
 
-    albumsInfo = [];
+    // Clear it to make it fresh
+    let albumInfoObject = [];
+    let albumList = [];
 
-    console.log('Scanning albums...');
+    console.log('Scanning albums in ' + albumPath);
     
     // Scan Albums directory
     try {
         // Scan all albums. The dot is attached to make the path relative
-        let files = await fs.promises.readdir('.' + albumFolderForLocalUse);
+        let files = await fs.promises.readdir('.' + albumPath);
 
-        // console.log("All albums found in " + albumFolderForLocalUse + " are: " + files);
+        // console.log("All albums found in " + albumPath + " are: " + files);
 
         // Store the albums into the albums variable and sort alphabetically
-        albums = files.sort(function (a, b) {
+        albumList = files.sort(function (a, b) {
             return a.localeCompare(b); //using String.prototype.localCompare()
         });
     } catch (err) {
@@ -126,14 +141,14 @@ async function collectAlbumsInfo() {
         console.error(err);
     }
 
-    // console.log(albums);
+    // console.log(albumList);
 
     // Loop through the albums
-    for (let i = 0; i < albums.length; i++) {
+    for (let i = 0; i < albumList.length; i++) {
 
         // Push this first, to create alphabetical order (reading file taked random amount of time)
-        albumsInfo.push({
-            name: albums[i],
+        albumInfoObject.push({
+            name: albumList[i],
             metadata: null,
             files: {
                 full: [],
@@ -145,7 +160,7 @@ async function collectAlbumsInfo() {
         //TODO Catch when no index or thumbnail is present
 
         // Create path to album index file
-        let path = '.' + albumFolderForLocalUse + albums[i] + '/index.json';
+        let path = '.' + albumPath + albumList[i] + '/index.json';
 
         
         // Read index.json
@@ -156,14 +171,14 @@ async function collectAlbumsInfo() {
             let json = JSON.parse(data);
 
             // Append content to albumsInfo variable
-            albumsInfo[i].metadata = json;
+            albumInfoObject[i].metadata = json;
             
         } catch (err) {
 
             if (err.code === 'ENOENT') {
-                console.error('Index file for album \"' + albums[i] + '\" not found!');
+                console.error('Index file for album \"' + albumList[i] + '\" not found!');
             } else {
-                console.log("There has been an error while reading the index.json of the " + albums[i] + " directory");
+                console.log("There has been an error while reading the index.json of the " + albumList[i] + " directory");
                 console.error(err);
             }
 
@@ -172,10 +187,10 @@ async function collectAlbumsInfo() {
 
         }
 
-        // Read filenames of the album
+        // Read filenames of the images of the album
         try {
 
-            let albumPathPublic = albumFolderForLocalUse + albums[i] + '/';
+            let albumPathPublic = albumPath + albumList[i] + '/';
 
             // Read folder for the big images and compile it
             let albumFiles = await fs.promises.readdir('.' + albumPathPublic);
@@ -189,8 +204,8 @@ async function collectAlbumsInfo() {
             */
             
             albumFiles.forEach(file => {
-                if (file.includes(albums[i])) {
-                    albumsInfo[i].files.full.push(file);
+                if (file.includes(".jpg")) {
+                    albumInfoObject[i].files.full.push(file);
 
                 } else {
                     // This is the case for all other files, currently then can be discarded
@@ -204,7 +219,7 @@ async function collectAlbumsInfo() {
             albumFilesThumb.forEach(file => {
                 if (file.includes('prev')) {
                     //console.log(file);
-                    albumsInfo[i].files.thumb.push("prev/" + file);
+                    albumInfoObject[i].files.thumb.push("prev/" + file);
                 } else {
                     // This is the case for all other files, currently then can be discarded
                 }
@@ -215,34 +230,45 @@ async function collectAlbumsInfo() {
 
             
         } catch (err) {
-            console.log("There has been an error while reading the " + albums[i] + " directory");
+            console.log("There has been an error while reading the " + albumList[i] + " directory");
             console.error(err);
         }
 
         
     }
 
-    //console.log(albumsInfo);
-    logAlbumsInfo();
+    // console.log(albumInfoObject);
+
+    logAlbumsInfo(albumInfoObject, albumPath);
+    return albumInfoObject;
+
+    // console.log(albumsInfo);
+
+    //console.log(albumInfoObject[0].files.full[1]);
 
 
 }
 
 /**
  * Returns the album index of a specified album in the album list
+ * In case it is not present, return -1
  */
-function getAlbumIndex(albumName) {
-    for (let i = 0; i < albumsInfo.length; i++) {
-        if (albumsInfo[i].name == albumName)
+function getAlbumIndex(albumName, albumList) {
+    for (let i = 0; i < albumList.length; i++) {
+        if (albumList[i].name == albumName)
             return i;
     }
+
+    return -1;
 }
 
-function logAlbumsInfo() {
-    console.log('--\nThe following complete albums have been found:\n');
 
-    albumsInfo.forEach(album => {
-        console.log(album.name + ' - ' + album.files.full.length + ' images');
+
+function logAlbumsInfo(albumInfoObject, albumPath) {
+    console.log('These albums have been found in ' + albumPath);
+
+    albumInfoObject.forEach(album => {
+        console.log(" - " + album.name + ' - ' + album.files.full.length + ' images');
     })
 }
 
@@ -251,12 +277,15 @@ function logAlbumsInfo() {
  */
 app.get('/', (req, res) => {
     // console.log(albumsInfo);
+    logAlbumsInfo(albumsInfoPrivate);
     
     let dataRender = {
-        albumsPathPrefix: albumFolderForPublicUse,
+        albumsPathPrefix: albumPublicFolderForPublicUse,
         albums: albumsInfo,
         albumRouting: albumRounting
     }
+
+    // console.log(dataRender);
 
     res.render("_home", dataRender);
 });
@@ -362,6 +391,73 @@ app.get('/modal', (req, res) => {
 });
 
 /**
+ * POST Route to forward to private album
+ * Receives the password and will then check if this exists
+ */
+app.post('/private-album', (req, res) => {
+    // get url from post body
+    let password = req.body.password;
+
+    //console.log(password);
+    //console.log(getUrlUsingPassword(password));
+    //let path = '/' + albumPrivateRouting + "/" + getUrlUsingPassword(password);
+
+    let url = getUrlUsingPassword(password);
+
+    if (typeof url !== "undefined") {
+        res.json({
+            albumPrivateRouting: albumPrivateRouting,
+            url: url
+        });
+    } else {
+        // Continue to the next handler (404)
+        res.json({
+            error: "Not found"
+        });
+    }
+    
+});
+
+/**
+ * Read the passwords for private albums
+ */
+function readPasswords() {
+    fs.readFile('passwords', 'utf8' , (err, data) => {
+        if (err) {
+          console.log("No urls.txt could be found. Therefore a new one will be created.");
+          return
+        }
+
+        // console.log(new Date().toISOString());
+
+        // console.log(data);
+        passwords = data.split("\n");
+        // console.log(paths);
+        console.log("Number of passwords for private albums is " + passwords.length);
+    });
+}
+
+/** 
+ * Go through all passwords and find the corresponding link
+ */
+function getUrlUsingPassword(pass) {
+    let index, pair, result;
+
+    for (index = 0; index < passwords.length; ++index) {
+
+        pair = passwords[index].split(delimiter);
+
+        if (pair[0] == pass) {
+            // store url
+            result = pair[1];
+            break;
+        }
+    }
+
+    return result;
+}
+
+/**
  * Sends a mail
  */
 async function sendMail(name, mail, message) {
@@ -401,13 +497,13 @@ app.get('/' + albumRounting + '/:albumName', (req, res) => {
     // Extract album parameter from request
     let album = req.params.albumName;
 
-    // if this is an actual album
-    if (!albums.includes(album)) {
+    let albumIndex = getAlbumIndex(album, albumsInfo);
+
+    if (albumIndex == -1){
         res.send("This album does not exist");
     }
     
-    let albumPath = albumFolderForPublicUse + album + '/';
-    let albumIndex = getAlbumIndex(album);
+    let albumPath = albumPublicFolderForPublicUse + album + '/';
 
     let dataRender = {
         pathPrefix: albumPath,
@@ -427,6 +523,84 @@ app.get('/' + albumRounting + '/:albumName', (req, res) => {
     
 
 });
+
+app.get('/new-private-album' + '/:password', (req, res) => {
+
+    // Extract album parameter from request
+    let passwordNew = req.params.password;
+
+    let key = getUrlUsingPassword(passwordNew);
+
+    if (typeof key !== "undefined") {
+        res.send("This password has already been used, the key is: " + key)
+        return;
+    }
+
+    // Generate uuid
+    let uuid = generateUuid();
+
+    // send response with the key
+    res.send("password: " + passwordNew + "\nkey: " + uuid);
+
+    // Prepare the string to be appended
+    let append = passwordNew + delimiter + uuid;
+    
+    // Write to file
+    fs.appendFileSync('passwords', "\n" + append, function (err) {
+        if (err) throw err;
+    });
+
+    // then load the paths into the variable
+    readPasswords();
+      
+
+});
+
+
+
+/**
+ * Album private endpoint
+ */
+app.get('/' + albumPrivateRouting + '/:albumKey', (req, res) => {
+
+    // Extract album parameter from request
+    let album = req.params.albumKey;
+
+    // get list index of album
+    let albumIndex = getAlbumIndex(album, albumsInfoPrivate);
+
+    // if not found, return
+    if (albumIndex == -1){
+        res.send("Sorry! This album does not exist");
+        return;
+    }
+    
+    let albumPath = albumPrivateFolderForPublicUse + album + '/';
+
+    let dataRender = {
+        pathPrefix: albumPath,
+        images: {
+            full: albumsInfoPrivate[albumIndex].files.full,
+            thumb: albumsInfoPrivate[albumIndex].files.thumb
+        },
+        title: albumsInfoPrivate[albumIndex].metadata.title,
+        subtitle: albumsInfoPrivate[albumIndex].metadata.subtitle,
+        description: albumsInfoPrivate[albumIndex].metadata.description
+    }
+
+    // console.log(dataRender);
+
+    res.render("_album-grid-private", dataRender);
+
+});
+
+function generateUuid() {
+    let uuid;
+    //TODO check uuids which are already taken
+    uuid = nanoid(10);
+    
+    return uuid;
+}
 
 
 /**
