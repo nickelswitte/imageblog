@@ -100,11 +100,15 @@ function forward(data) {
     } else {
     
         let input = document.getElementById("passInput");
+        let modal = document.getElementById("modalPassword");
+
         input.classList.add("is-danger");
+        modal.classList.add("error");
 
         setTimeout(function(){
             input.classList.remove("is-danger");
-        }, 3000);
+            modal.classList.remove("error");
+        }, 1000);
     }
 }
 
