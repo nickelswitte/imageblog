@@ -597,7 +597,7 @@ app.get('/' + albumPrivateRouting + '/:albumKey', (req, res) => {
 function generateUuid() {
     let uuid;
     //TODO check uuids which are already taken
-    uuid = nanoid(10);
+    uuid = nanoid(20);
     
     return uuid;
 }
