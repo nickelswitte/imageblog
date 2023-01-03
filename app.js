@@ -277,7 +277,7 @@ function logAlbumsInfo(albumInfoObject, albumPath) {
  */
 app.get('/', (req, res) => {
     // console.log(albumsInfo);
-    logAlbumsInfo(albumsInfoPrivate);
+    //logAlbumsInfo(albumsInfoPrivate);
     
     let dataRender = {
         albumsPathPrefix: albumPublicFolderForPublicUse,

@@ -26,11 +26,19 @@
     </div>
 
     <div class="navbar-end">
+    
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-primary" href="/kontakt">
-            <strong>Interessiert?</strong>
+          <a class="button is-white" href="https://instagram.com/ueberblendet">
+            <span class="icon is-medium">
+              <i class="fa fa-instagram fa-lg"></i>
+            </span>
           </a>
+
+          <a class="button is-success" href="/kontakt">
+            <strong>Kontakt</strong>
+          </a>
+          
         </div>
       </div>
     </div>
