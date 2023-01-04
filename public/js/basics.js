@@ -45,6 +45,9 @@ function clickPress(event) {
     if (event.key == "Enter") {
         //console.log("test");
         var password = document.getElementById('passInput').value;
+        var controlElement = document.getElementById('modalPasswordP');
+        controlElement.classList.add("is-loading");
+
         sendPass(password);
     }
 }
@@ -101,13 +104,17 @@ function forward(data) {
     
         let input = document.getElementById("passInput");
         let modal = document.getElementById("modalPassword");
+        var controlElement = document.getElementById('modalPasswordP');
 
-        input.classList.add("is-danger");
-        modal.classList.add("error");
+        setTimeout(function(){
+          input.classList.add("is-danger");
+          modal.classList.add("error");
+        }, 300);
 
         setTimeout(function(){
             input.classList.remove("is-danger");
             modal.classList.remove("error");
+            controlElement.classList.remove("is-loading");
         }, 1000);
     }
 }

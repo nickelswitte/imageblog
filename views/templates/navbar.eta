@@ -29,7 +29,7 @@
     
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-white" href="https://instagram.com/ueberblendet">
+          <a class="button is-white is-rounded" href="https://instagram.com/ueberblendet">
             <span class="icon is-medium">
               <i class="fa fa-instagram fa-lg"></i>
             </span>

@@ -1,11 +1,11 @@
 <div class="modal" id="modal-private-albums">
 
     <div class="modal-background"></div>
-    <div class="modal-content">
+    <div class="modal-content" id="modalContent">
       
       <div class="field"  id="modalPassword">
-        <p class="control has-icons-left">
-          <input class="input is-large" type="password" placeholder="Passwort für das private Album eingeben" id="passInput" onkeypress="clickPress(event)">
+        <p class="control has-icons-left is-large" id="modalPasswordP">
+          <input class="input is-large" type="password" placeholder="Passwort eingeben und Enter drücken" id="passInput" onkeypress="clickPress(event)">
           <span class="icon is-small is-left">
             <i class="fa fa-lock"></i>
         </p>
