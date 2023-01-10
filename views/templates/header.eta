@@ -14,6 +14,7 @@
 <link rel="manifest" href="/fav/site.webmanifest">
 <link rel="mask-icon" href="/fav/safari-pinned-tab.svg" color="#5bbad5">
 <link rel="shortcut icon" href="/fav/favicon.ico">
+<script defer data-domain="ueberblendet.de" src="https://numbers.sdbx.dev/js/script.js"></script>
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="msapplication-config" content="/fav/browserconfig.xml">
 <meta name="theme-color" content="#ffffff">
